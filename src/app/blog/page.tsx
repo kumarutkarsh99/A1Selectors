@@ -33,7 +33,7 @@ const staggerContainer = {
 };
 
 // Update the component signature
-export default function BlogPage({ onPostClick }: BlogPageProps) {
+export default function BlogPage() {
   const blogPosts = [
     {
       id: 1,
@@ -216,10 +216,7 @@ export default function BlogPage({ onPostClick }: BlogPageProps) {
                         {blogPosts[0].author}
                       </span>
                     </div>
-                    <Button
-                      className="bg-teal-600 hover:bg-teal-700"
-                      onClick={() => onPostClick?.(blogPosts[0].id)}
-                    >
+                    <Button className="bg-teal-600 hover:bg-teal-700">
                       Read More
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
@@ -298,7 +295,6 @@ export default function BlogPage({ onPostClick }: BlogPageProps) {
                       variant="ghost"
                       size="sm"
                       className="w-full mt-4 text-teal-600 hover:text-teal-700 hover:bg-teal-50"
-                      onClick={() => onPostClick?.(post.id)}
                     >
                       Read More
                       <ArrowRight className="ml-2 h-4 w-4" />
