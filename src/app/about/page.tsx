@@ -20,7 +20,6 @@ import {
   CheckCircle,
   ArrowRight,
 } from "lucide-react";
-import Image from "next/image";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 60 },
@@ -53,8 +52,9 @@ export default function AboutPage() {
               <span className="text-teal-600">Opportunity</span>
             </h1>
             <p className="text-xl md:text-2xl text-slate-600 mb-8 max-w-3xl mx-auto">
-              {`For over a decade, we've been bridging the gap between exceptional talent and outstanding companies,
-              creating success stories that transform careers and businesses.`}
+              For over a decade, we've been bridging the gap between exceptional
+              talent and outstanding companies, creating success stories that
+              transform careers and businesses.
             </p>
           </motion.div>
         </div>
@@ -115,9 +115,11 @@ export default function AboutPage() {
                 </CardHeader>
                 <CardContent>
                   <p className="text-slate-600 text-lg leading-relaxed">
-                    {`To revolutionize the recruitment industry by creating meaningful connections between talented
-                    professionals and forward-thinking companies. We believe that the right match can transform both
-                    careers and businesses, driving innovation and growth across industries.`}
+                    To revolutionize the recruitment industry by creating
+                    meaningful connections between talented professionals and
+                    forward-thinking companies. We believe that the right match
+                    can transform both careers and businesses, driving
+                    innovation and growth across industries.
                   </p>
                 </CardContent>
               </Card>
@@ -135,9 +137,11 @@ export default function AboutPage() {
                 </CardHeader>
                 <CardContent>
                   <p className="text-slate-600 text-lg leading-relaxed">
-                    {`To become the world's most trusted recruitment partner, known for our integrity, innovation, and
-                    impact. We envision a future where every professional finds their perfect role and every company
-                    builds their dream team through our platform.`}
+                    To become the world's most trusted recruitment partner,
+                    known for our integrity, innovation, and impact. We envision
+                    a future where every professional finds their perfect role
+                    and every company builds their dream team through our
+                    platform.
                   </p>
                 </CardContent>
               </Card>
@@ -160,7 +164,8 @@ export default function AboutPage() {
               Our Core Values
             </h2>
             <p className="text-xl text-slate-600 max-w-2xl mx-auto">
-              {`The principles that guide everything we do and shape our relationships with clients and candidates.`}
+              The principles that guide everything we do and shape our
+              relationships with clients and candidates.
             </p>
           </motion.div>
 

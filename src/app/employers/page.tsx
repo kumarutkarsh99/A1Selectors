@@ -388,7 +388,8 @@ export default function EmployersPage() {
                 Ready to Hire?
               </h2>
               <p className="text-xl text-slate-600">
-                {`Tell us about your hiring needs and we'll get back to you within 24 hours.`}
+                Tell us about your hiring needs and we'll get back to you within
+                24 hours.
               </p>
             </div>
 

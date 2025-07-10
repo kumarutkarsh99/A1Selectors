@@ -13,6 +13,7 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Search, Calendar, User, ArrowRight, Clock } from "lucide-react";
 
+// Add interface at the top
 interface BlogPageProps {
   onPostClick?: (postId: number) => void;
 }
@@ -333,7 +334,8 @@ export default function BlogPage({ onPostClick }: BlogPageProps) {
           >
             <h2 className="text-3xl font-bold text-white mb-4">Stay Updated</h2>
             <p className="text-teal-100 mb-8">
-              {`Get the latest career insights and industry news delivered to your inbox weekly.`}
+              Get the latest career insights and industry news delivered to your
+              inbox weekly.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
               <Input

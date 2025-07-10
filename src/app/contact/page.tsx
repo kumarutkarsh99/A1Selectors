@@ -50,7 +50,8 @@ export default function ContactPage() {
               Get in Touch
             </h1>
             <p className="text-xl text-slate-600 max-w-2xl mx-auto">
-              {`Ready to find your next hire or dream job? We're here to help you succeed.`}
+              Ready to find your next hire or dream job? We're here to help you
+              succeed.
             </p>
           </motion.div>
         </div>
@@ -171,7 +172,10 @@ export default function ContactPage() {
                     <MessageSquare className="mr-2 h-5 w-5 text-teal-600" />
                     Send us a Message
                   </CardTitle>
-                  <CardDescription>{`Fill out the form below and we'll get back to you within 24 hours.`}</CardDescription>
+                  <CardDescription>
+                    Fill out the form below and we'll get back to you within 24
+                    hours.
+                  </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
