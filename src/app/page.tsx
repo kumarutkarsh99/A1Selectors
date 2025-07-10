@@ -31,6 +31,7 @@ import {
   User,
   FileText,
 } from "lucide-react";
+import Image from "next/image";
 import ClientLogos from "@/components/client-logos";
 
 const stats = [
@@ -498,7 +499,7 @@ export default function HomePage() {
               What Our Clients Say
             </h2>
             <p className="text-xl text-slate-600 max-w-2xl mx-auto">
-              Success stories from companies and professionals we've helped.
+              {`Success stories from companies and professionals we've helped.`}
             </p>
           </motion.div>
 
@@ -590,7 +591,7 @@ export default function HomePage() {
               Get Started Today
             </h2>
             <p className="text-xl text-slate-600 max-w-2xl mx-auto">
-              Ready to find your next hire or dream job? Let's connect.
+              {`Ready to find your next hire or dream job? Let's connect.`}
             </p>
           </motion.div>
 
@@ -604,10 +605,10 @@ export default function HomePage() {
             <Tabs defaultValue="employer" className="w-full">
               <TabsList className="grid w-full grid-cols-2 mb-8">
                 <TabsTrigger value="employer" className="text-sm">
-                  I'm an Employer
+                  {`I'm an Employer`}
                 </TabsTrigger>
                 <TabsTrigger value="jobseeker" className="text-sm">
-                  I'm a Job Seeker
+                  {`I'm a Job Seeker`}
                 </TabsTrigger>
               </TabsList>
 
@@ -619,8 +620,8 @@ export default function HomePage() {
                       Employer Information
                     </CardTitle>
                     <CardDescription>
-                      Tell us about your hiring needs and we'll get back to you
-                      within 24 hours.
+                      {`Tell us about your hiring needs and we'll get back to you
+                      within 24 hours.`}
                     </CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-4">
@@ -676,8 +677,8 @@ export default function HomePage() {
                       Job Seeker Information
                     </CardTitle>
                     <CardDescription>
-                      Share your details and we'll match you with relevant
-                      opportunities.
+                      {`Share your details and we'll match you with relevant
+                      opportunities.`}
                     </CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-4">
@@ -837,7 +838,7 @@ export default function HomePage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
             <div>
               <h3 className="text-2xl font-bold mb-4 text-teal-400">
-                TalentConnect
+                A1 Selectors
               </h3>
               <p className="text-slate-300 mb-6">
                 Connecting exceptional talent with outstanding opportunities
@@ -929,7 +930,7 @@ export default function HomePage() {
           </div>
 
           <div className="border-t border-slate-700 pt-8 text-center text-slate-400">
-            <p>&copy; 2023 TalentConnect. All rights reserved.</p>
+            <p>&copy; 2025 A1Selectors. All rights reserved.</p>
           </div>
         </div>
       </footer>

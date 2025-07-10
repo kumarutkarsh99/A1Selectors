@@ -1,18 +1,30 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { MapPin, Phone, Mail, Clock, Send, MessageSquare } from "lucide-react"
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { MapPin, Phone, Mail, Clock, Send, MessageSquare } from "lucide-react";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 60 },
   animate: { opacity: 1, y: 0 },
   transition: { duration: 0.6 },
-}
+};
 
 const staggerContainer = {
   animate: {
@@ -20,7 +32,7 @@ const staggerContainer = {
       staggerChildren: 0.1,
     },
   },
-}
+};
 
 export default function ContactPage() {
   return (
@@ -34,9 +46,11 @@ export default function ContactPage() {
             transition={{ duration: 0.6 }}
             className="text-center mb-12"
           >
-            <h1 className="text-4xl md:text-5xl font-bold text-slate-800 mb-4">Get in Touch</h1>
+            <h1 className="text-4xl md:text-5xl font-bold text-slate-800 mb-4">
+              Get in Touch
+            </h1>
             <p className="text-xl text-slate-600 max-w-2xl mx-auto">
-              Ready to find your next hire or dream job? We're here to help you succeed.
+              {`Ready to find your next hire or dream job? We're here to help you succeed.`}
             </p>
           </motion.div>
         </div>
@@ -56,14 +70,18 @@ export default function ContactPage() {
             >
               <div className="space-y-8">
                 <div>
-                  <h2 className="text-2xl font-bold text-slate-800 mb-6">Contact Information</h2>
+                  <h2 className="text-2xl font-bold text-slate-800 mb-6">
+                    Contact Information
+                  </h2>
                   <div className="space-y-6">
                     <div className="flex items-start">
                       <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
                         <MapPin className="h-6 w-6 text-teal-600" />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-slate-800 mb-1">Office Address</h3>
+                        <h3 className="font-semibold text-slate-800 mb-1">
+                          Office Address
+                        </h3>
                         <p className="text-slate-600">
                           123 Business Avenue
                           <br />
@@ -79,7 +97,9 @@ export default function ContactPage() {
                         <Phone className="h-6 w-6 text-teal-600" />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-slate-800 mb-1">Phone Numbers</h3>
+                        <h3 className="font-semibold text-slate-800 mb-1">
+                          Phone Numbers
+                        </h3>
                         <p className="text-slate-600">
                           Main: +1 (555) 123-4567
                           <br />
@@ -93,7 +113,9 @@ export default function ContactPage() {
                         <Mail className="h-6 w-6 text-teal-600" />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-slate-800 mb-1">Email Addresses</h3>
+                        <h3 className="font-semibold text-slate-800 mb-1">
+                          Email Addresses
+                        </h3>
                         <p className="text-slate-600">
                           General: hello@talentconnect.com
                           <br />
@@ -109,7 +131,9 @@ export default function ContactPage() {
                         <Clock className="h-6 w-6 text-teal-600" />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-slate-800 mb-1">Business Hours</h3>
+                        <h3 className="font-semibold text-slate-800 mb-1">
+                          Business Hours
+                        </h3>
                         <p className="text-slate-600">
                           Monday - Friday: 9:00 AM - 6:00 PM
                           <br />
@@ -147,34 +171,44 @@ export default function ContactPage() {
                     <MessageSquare className="mr-2 h-5 w-5 text-teal-600" />
                     Send us a Message
                   </CardTitle>
-                  <CardDescription>Fill out the form below and we'll get back to you within 24 hours.</CardDescription>
+                  <CardDescription>{`Fill out the form below and we'll get back to you within 24 hours.`}</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <label className="text-sm font-medium text-slate-700 mb-2 block">First Name</label>
+                      <label className="text-sm font-medium text-slate-700 mb-2 block">
+                        First Name
+                      </label>
                       <Input placeholder="John" />
                     </div>
                     <div>
-                      <label className="text-sm font-medium text-slate-700 mb-2 block">Last Name</label>
+                      <label className="text-sm font-medium text-slate-700 mb-2 block">
+                        Last Name
+                      </label>
                       <Input placeholder="Doe" />
                     </div>
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <label className="text-sm font-medium text-slate-700 mb-2 block">Email Address</label>
+                      <label className="text-sm font-medium text-slate-700 mb-2 block">
+                        Email Address
+                      </label>
                       <Input type="email" placeholder="john@example.com" />
                     </div>
                     <div>
-                      <label className="text-sm font-medium text-slate-700 mb-2 block">Phone Number</label>
+                      <label className="text-sm font-medium text-slate-700 mb-2 block">
+                        Phone Number
+                      </label>
                       <Input placeholder="+1 (555) 123-4567" />
                     </div>
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <label className="text-sm font-medium text-slate-700 mb-2 block">I am a</label>
+                      <label className="text-sm font-medium text-slate-700 mb-2 block">
+                        I am a
+                      </label>
                       <Select>
                         <SelectTrigger>
                           <SelectValue placeholder="Select your role" />
@@ -182,36 +216,58 @@ export default function ContactPage() {
                         <SelectContent>
                           <SelectItem value="jobseeker">Job Seeker</SelectItem>
                           <SelectItem value="employer">Employer</SelectItem>
-                          <SelectItem value="partner">Business Partner</SelectItem>
+                          <SelectItem value="partner">
+                            Business Partner
+                          </SelectItem>
                           <SelectItem value="other">Other</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
                     <div>
-                      <label className="text-sm font-medium text-slate-700 mb-2 block">Subject</label>
+                      <label className="text-sm font-medium text-slate-700 mb-2 block">
+                        Subject
+                      </label>
                       <Select>
                         <SelectTrigger>
                           <SelectValue placeholder="Select a subject" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="general">General Inquiry</SelectItem>
-                          <SelectItem value="hiring">Hiring Services</SelectItem>
-                          <SelectItem value="job-search">Job Search Help</SelectItem>
-                          <SelectItem value="partnership">Partnership</SelectItem>
-                          <SelectItem value="support">Technical Support</SelectItem>
+                          <SelectItem value="general">
+                            General Inquiry
+                          </SelectItem>
+                          <SelectItem value="hiring">
+                            Hiring Services
+                          </SelectItem>
+                          <SelectItem value="job-search">
+                            Job Search Help
+                          </SelectItem>
+                          <SelectItem value="partnership">
+                            Partnership
+                          </SelectItem>
+                          <SelectItem value="support">
+                            Technical Support
+                          </SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
                   </div>
 
                   <div>
-                    <label className="text-sm font-medium text-slate-700 mb-2 block">Company (Optional)</label>
+                    <label className="text-sm font-medium text-slate-700 mb-2 block">
+                      Company (Optional)
+                    </label>
                     <Input placeholder="Your company name" />
                   </div>
 
                   <div>
-                    <label className="text-sm font-medium text-slate-700 mb-2 block">Message</label>
-                    <Textarea placeholder="Tell us how we can help you..." rows={6} className="resize-none" />
+                    <label className="text-sm font-medium text-slate-700 mb-2 block">
+                      Message
+                    </label>
+                    <Textarea
+                      placeholder="Tell us how we can help you..."
+                      rows={6}
+                      className="resize-none"
+                    />
                   </div>
 
                   <Button className="w-full bg-teal-600 hover:bg-teal-700 text-lg py-3">
@@ -235,7 +291,9 @@ export default function ContactPage() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl font-bold text-slate-800 mb-4">Frequently Asked Questions</h2>
+            <h2 className="text-4xl font-bold text-slate-800 mb-4">
+              Frequently Asked Questions
+            </h2>
             <p className="text-xl text-slate-600 max-w-2xl mx-auto">
               Quick answers to common questions about our services.
             </p>
@@ -273,7 +331,9 @@ export default function ContactPage() {
               <motion.div key={index} variants={fadeInUp}>
                 <Card className="h-full bg-slate-50">
                   <CardContent className="p-6">
-                    <h3 className="font-semibold text-slate-800 mb-3">{faq.question}</h3>
+                    <h3 className="font-semibold text-slate-800 mb-3">
+                      {faq.question}
+                    </h3>
                     <p className="text-slate-600">{faq.answer}</p>
                   </CardContent>
                 </Card>
@@ -283,5 +343,5 @@ export default function ContactPage() {
         </div>
       </section>
     </div>
-  )
+  );
 }

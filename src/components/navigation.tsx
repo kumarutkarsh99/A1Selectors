@@ -1,7 +1,8 @@
 "use client";
 
+import { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -11,6 +12,7 @@ import {
   Search,
   Building,
   Users,
+  Info,
   BookOpen,
   Phone,
   Home,
@@ -18,23 +20,37 @@ import {
 
 export default function Navigation() {
   const pathname = usePathname() ?? "";
+  const router = useRouter();
+  const [isOpen, setIsOpen] = useState(false);
 
-  const navItems = [
-    { href: "/", label: "Home", icon: Home },
-    { href: "/jobs", label: "Browse Jobs", icon: Search },
-    { href: "/employers", label: "For Employers", icon: Building },
-    { href: "/jobseekers", label: "For Job Seekers", icon: Users },
-    { href: "/about", label: "About Us", icon: Users },
-    { href: "/blog", label: "Blog", icon: BookOpen },
-    { href: "/contact", label: "Contact", icon: Phone },
-  ];
+  // Memoize nav items so they're stable
+  const navItems = useMemo(
+    () => [
+      { href: "/", label: "Home", icon: Home },
+      { href: "/jobs", label: "Browse Jobs", icon: Search },
+      { href: "/employers", label: "For Employers", icon: Building },
+      { href: "/jobseekers", label: "For Job Seekers", icon: Users },
+      { href: "/about", label: "About Us", icon: Info },
+      { href: "/blog", label: "Blog", icon: BookOpen },
+      { href: "/contact", label: "Contact", icon: Phone },
+    ],
+    []
+  );
 
-  const isActive = (href: string) => {
-    if (href === "/") {
-      return pathname === "/";
+  // Decide active link
+  const isActive = (href: string) =>
+    href === "/"
+      ? pathname === "/"
+      : pathname === href || pathname.startsWith(href + "/");
+
+  // Prefetch all routes when the mobile menu opens
+  useEffect(() => {
+    if (isOpen) {
+      navItems.forEach((item) => {
+        router.prefetch(item.href);
+      });
     }
-    return pathname === href || pathname.startsWith(href + "/");
-  };
+  }, [isOpen, navItems, router]);
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-slate-200">
@@ -44,11 +60,11 @@ export default function Navigation() {
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="flex items-center cursor-pointer"
+            className="flex items-center"
           >
             <Link href="/" className="flex items-center">
               <div className="w-8 h-8 bg-teal-600 rounded-lg flex items-center justify-center mr-3">
-                <span className="text-white font-bold text-lg">T</span>
+                <span className="text-white font-bold text-md">A1</span>
               </div>
               <span className="text-xl font-bold text-slate-800">
                 A1Selectors
@@ -62,6 +78,7 @@ export default function Navigation() {
               <Link
                 key={href}
                 href={href}
+                aria-current={isActive(href) ? "page" : undefined}
                 className={`text-sm font-medium transition-colors ${
                   isActive(href)
                     ? "text-teal-600"
@@ -75,26 +92,27 @@ export default function Navigation() {
 
           {/* Desktop CTAs */}
           <div className="hidden lg:flex items-center space-x-4">
-            <Link href="/jobs">
-              <Button
-                variant="outline"
-                size="sm"
-                className="border-teal-600 text-teal-600 hover:bg-teal-50"
-              >
+            <Button
+              asChild
+              variant="outline"
+              size="sm"
+              className="border-teal-600 text-teal-600 hover:bg-teal-50"
+            >
+              <Link href="/jobs">
                 <Search className="mr-2 h-4 w-4" />
                 Find Jobs
-              </Button>
-            </Link>
-            <Link href="/jobseekers">
-              <Button size="sm" className="bg-teal-600 hover:bg-teal-700">
+              </Link>
+            </Button>
+            <Button asChild size="sm" className="bg-teal-600 hover:bg-teal-700">
+              <Link href="/jobseekers">
                 <Upload className="mr-2 h-4 w-4" />
                 Upload CV
-              </Button>
-            </Link>
+              </Link>
+            </Button>
           </div>
 
           {/* Mobile Menu */}
-          <Sheet>
+          <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild className="lg:hidden">
               <Button variant="ghost" size="sm">
                 <Menu className="h-6 w-6" />
@@ -102,28 +120,29 @@ export default function Navigation() {
             </SheetTrigger>
 
             <SheetContent side="right" className="w-80">
-              {/* Header */}
+              {/* Mobile Header */}
               <div className="flex items-center justify-between mb-8">
                 <Link href="/" className="flex items-center">
                   <div className="w-8 h-8 bg-teal-600 rounded-lg flex items-center justify-center mr-3">
-                    <span className="text-white font-bold text-lg">T</span>
+                    <span className="text-white font-bold text-lg">A1</span>
                   </div>
                   <span className="text-xl font-bold text-slate-800">
-                    TalentConnect
+                    A1Selectors
                   </span>
                 </Link>
               </div>
 
-              {/* Links */}
+              {/* Mobile Links */}
               <div className="space-y-4">
                 {navItems.map(({ href, label, icon: Icon }) => (
-                  <Link key={href} href={href}>
+                  <Link key={href} href={href} onClick={() => setIsOpen(false)}>
                     <button
                       className={`w-full flex items-center px-4 py-3 rounded-lg text-left transition-colors ${
                         isActive(href)
                           ? "bg-teal-50 text-teal-600"
                           : "text-slate-600 hover:bg-slate-50"
                       }`}
+                      aria-current={isActive(href) ? "page" : undefined}
                     >
                       <Icon className="mr-3 h-5 w-5" />
                       {label}
@@ -134,21 +153,25 @@ export default function Navigation() {
 
               {/* Mobile CTAs */}
               <div className="pt-4 space-y-3">
-                <Link href="/jobs">
-                  <Button
-                    variant="outline"
-                    className="w-full border-teal-600 text-teal-600 hover:bg-teal-50"
-                  >
+                <Button
+                  asChild
+                  variant="outline"
+                  className="w-full border-teal-600 text-teal-600 hover:bg-teal-50"
+                >
+                  <Link href="/jobs" onClick={() => setIsOpen(false)}>
                     <Search className="mr-2 h-4 w-4" />
                     Find Jobs
-                  </Button>
-                </Link>
-                <Link href="/jobseekers">
-                  <Button className="w-full bg-teal-600 hover:bg-teal-700">
+                  </Link>
+                </Button>
+                <Button
+                  asChild
+                  className="w-full bg-teal-600 hover:bg-teal-700"
+                >
+                  <Link href="/jobseekers" onClick={() => setIsOpen(false)}>
                     <Upload className="mr-2 h-4 w-4" />
                     Upload CV
-                  </Button>
-                </Link>
+                  </Link>
+                </Button>
               </div>
             </SheetContent>
           </Sheet>

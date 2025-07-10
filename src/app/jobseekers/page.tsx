@@ -93,8 +93,8 @@ export default function JobSeekersPage() {
               Why Choose TalentConnect?
             </h2>
             <p className="text-xl text-slate-600 max-w-2xl mx-auto">
-              We're committed to helping you find the perfect role that matches
-              your skills and aspirations.
+              {`We're committed to helping you find the perfect role that matches
+              your skills and aspirations.`}
             </p>
           </motion.div>
 
@@ -369,8 +369,8 @@ export default function JobSeekersPage() {
                   Create Your Profile
                 </CardTitle>
                 <CardDescription>
-                  Tell us about yourself and we'll start matching you with
-                  relevant opportunities.
+                  {`Tell us about yourself and we'll start matching you with
+                  relevant opportunities.`}
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
