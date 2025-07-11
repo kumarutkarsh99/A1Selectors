@@ -11,8 +11,6 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import {
   Code,
@@ -29,7 +27,6 @@ import {
   Building,
   Briefcase,
   Award,
-  User,
   FileText,
 } from "lucide-react";
 import ClientLogos from "@/components/client-logos";

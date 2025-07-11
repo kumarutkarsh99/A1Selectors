@@ -242,7 +242,7 @@ export default function ServicesPage() {
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    {services.map((service, index) => (
+                    {services.map((service) => (
                       <motion.div
                         key={service.title}
                         initial={{ opacity: 0, y: 20 }}
@@ -312,7 +312,7 @@ export default function ServicesPage() {
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    {industries.map((industry, index) => (
+                    {industries.map((industry) => (
                       <motion.div
                         key={industry.name}
                         initial={{ opacity: 0, y: 20 }}
@@ -378,7 +378,7 @@ export default function ServicesPage() {
                   </div>
 
                   <div className="space-y-8">
-                    {processSteps.map((step, index) => (
+                    {processSteps.map((step) => (
                       <motion.div
                         key={step.step}
                         initial={{ opacity: 0, y: 20 }}

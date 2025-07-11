@@ -15,7 +15,6 @@ import {
   Info,
   BookOpen,
   Phone,
-  Home,
 } from "lucide-react";
 
 export default function Navigation() {

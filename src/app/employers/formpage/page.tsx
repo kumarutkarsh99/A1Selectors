@@ -2,42 +2,11 @@
 
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import {
-  Building,
-  Users,
-  Target,
-  Clock,
-  CheckCircle,
-  Star,
-  ArrowRight,
-  Search,
-  FileText,
-  UserCheck,
-} from "lucide-react";
+import { Building, ArrowRight } from "lucide-react";
 import { toast } from "sonner";
-
-const fadeInUp = {
-  initial: { opacity: 0, y: 60 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6 },
-};
-
-const staggerContainer = {
-  animate: {
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-};
 
 export default function EmployersPage() {
   const handleSubmit = () => {

@@ -10,8 +10,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import {
   User,
@@ -19,7 +17,6 @@ import {
   Search,
   Target,
   CheckCircle,
-  ArrowRight,
   FileText,
   Briefcase,
   TrendingUp,

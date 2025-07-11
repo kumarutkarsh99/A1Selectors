@@ -11,34 +11,8 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Badge } from "@/components/ui/badge";
-import {
-  User,
-  Upload,
-  Search,
-  Target,
-  CheckCircle,
-  ArrowRight,
-  FileText,
-  Briefcase,
-  TrendingUp,
-  Award,
-} from "lucide-react";
+import { User, Upload } from "lucide-react";
 import { toast } from "sonner";
-
-const fadeInUp = {
-  initial: { opacity: 0, y: 60 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6 },
-};
-
-const staggerContainer = {
-  animate: {
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-};
 
 export default function JobSeekersPage() {
   const handleSubmit = () => {
