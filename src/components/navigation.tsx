@@ -23,13 +23,12 @@ export default function Navigation() {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
 
-  // Memoize nav items so they're stable
   const navItems = useMemo(
     () => [
-      { href: "/", label: "Home", icon: Home },
-      { href: "/jobs", label: "Browse Jobs", icon: Search },
-      { href: "/employers", label: "For Employers", icon: Building },
-      { href: "/jobseekers", label: "For Job Seekers", icon: Users },
+      // { href: "/", label: "Home", icon: Home },
+      { href: "/services", label: "Our Services", icon: Search },
+      { href: "/employers", label: "For Companies", icon: Building },
+      { href: "/jobseekers", label: "For Talent", icon: Users },
       { href: "/about", label: "About Us", icon: Info },
       { href: "/blog", label: "Blog", icon: BookOpen },
       { href: "/contact", label: "Contact", icon: Phone },
@@ -43,7 +42,6 @@ export default function Navigation() {
       ? pathname === "/"
       : pathname === href || pathname.startsWith(href + "/");
 
-  // Prefetch all routes when the mobile menu opens
   useEffect(() => {
     if (isOpen) {
       navItems.forEach((item) => {
@@ -104,7 +102,7 @@ export default function Navigation() {
               </Link>
             </Button>
             <Button asChild size="sm" className="bg-teal-600 hover:bg-teal-700">
-              <Link href="/jobseekers">
+              <Link href="/jobseekers/formpage">
                 <Upload className="mr-2 h-4 w-4" />
                 Upload CV
               </Link>
@@ -167,7 +165,10 @@ export default function Navigation() {
                   asChild
                   className="w-full bg-teal-600 hover:bg-teal-700"
                 >
-                  <Link href="/jobseekers" onClick={() => setIsOpen(false)}>
+                  <Link
+                    href="/jobseekers/formpage"
+                    onClick={() => setIsOpen(false)}
+                  >
                     <Upload className="mr-2 h-4 w-4" />
                     Upload CV
                   </Link>

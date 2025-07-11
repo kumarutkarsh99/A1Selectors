@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import {
@@ -32,6 +33,52 @@ import {
   FileText,
 } from "lucide-react";
 import ClientLogos from "@/components/client-logos";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Shield, Clock, Globe, Target, Zap } from "lucide-react";
+
+const features = [
+  {
+    icon: Shield,
+    title: "Verified Profiles",
+    description:
+      "All candidates undergo thorough background checks and skill verification",
+    badge: "Security",
+  },
+  {
+    icon: Clock,
+    title: "Fast Turnaround",
+    description:
+      "Average placement time of 2-3 weeks with our streamlined process",
+    badge: "Speed",
+  },
+  {
+    icon: Globe,
+    title: "Global Reach",
+    description:
+      "Access to talent pools across 50+ countries and major tech hubs",
+    badge: "Scale",
+  },
+  {
+    icon: Target,
+    title: "Precision Matching",
+    description: "AI-powered algorithms ensure perfect skill and culture fit",
+    badge: "Accuracy",
+  },
+  {
+    icon: Users,
+    title: "Dedicated Support",
+    description:
+      "Personal account managers for ongoing relationship management",
+    badge: "Service",
+  },
+  {
+    icon: Zap,
+    title: "Real-time Updates",
+    description:
+      "Live dashboard with application status and candidate pipeline",
+    badge: "Technology",
+  },
+];
 
 const stats = [
   {
@@ -60,6 +107,45 @@ const stats = [
   },
 ];
 
+const testimonials = [
+  {
+    name: "Sarah Johnson",
+    role: "HR Director",
+    company: "TechCorp",
+    avatar: "/placeholder.svg?height=40&width=40",
+    content:
+      "TalentBridge helped us find exceptional developers in record time. Their screening process is thorough and the quality of candidates is outstanding.",
+    rating: 5,
+  },
+  {
+    name: "Michael Chen",
+    role: "Software Engineer",
+    company: "Startup Inc",
+    avatar: "/placeholder.svg?height=40&width=40",
+    content:
+      "I found my dream job through TalentBridge. The process was smooth and the team was incredibly supportive throughout my job search.",
+    rating: 5,
+  },
+  {
+    name: "Emily Rodriguez",
+    role: "Product Manager",
+    company: "Innovation Labs",
+    avatar: "/placeholder.svg?height=40&width=40",
+    content:
+      "The platform made it easy to connect with top talent. We've hired 5 amazing team members through TalentBridge in the past year.",
+    rating: 5,
+  },
+  {
+    name: "David Kim",
+    role: "Frontend Developer",
+    company: "Design Studio",
+    avatar: "/placeholder.svg?height=40&width=40",
+    content:
+      "Professional service and great results. TalentBridge understood exactly what I was looking for in my next role.",
+    rating: 5,
+  },
+];
+
 const fadeInUp = {
   initial: { opacity: 0, y: 60 },
   animate: { opacity: 1, y: 0 },
@@ -75,6 +161,15 @@ const staggerContainer = {
 };
 
 export default function HomePage() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
@@ -127,15 +222,15 @@ export default function HomePage() {
                 size="lg"
                 className="bg-teal-600 hover:bg-teal-700 text-white px-8 py-3 text-lg"
               >
-                <FileText className="mr-2 h-5 w-5" />
-                View Sample CVs
+                <FileText className="h-5 w-5" />
+                Hire Talent
               </Button>
               <Button
                 size="lg"
                 variant="outline"
                 className="border-teal-600 text-teal-600 hover:bg-teal-50 px-8 py-3 text-lg bg-transparent"
               >
-                <Upload className="mr-2 h-5 w-5" />
+                <Upload className="h-5 w-5" />
                 Upload Your CV
               </Button>
             </motion.div>
@@ -368,372 +463,144 @@ export default function HomePage() {
       </section>
 
       {/* How It Works */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
+      <section className="py-20 px-20 bg-white">
+        <div className="container">
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.8 }}
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl font-bold text-slate-800 mb-4">
-              How It Works
+            <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">
+              Why Choose TalentBridge
             </h2>
-            <p className="text-xl text-slate-600 max-w-2xl mx-auto">
-              Simple steps to connect talent with opportunity.
+            <p className="mt-4 text-lg text-gray-600">
+              Advanced features that set us apart from traditional recruitment
             </p>
           </motion.div>
 
-          <Tabs defaultValue="employers" className="max-w-4xl mx-auto">
-            <TabsList className="grid w-full grid-cols-2 mb-12">
-              <TabsTrigger value="employers" className="text-sm">
-                <Building className="h-4 w-4" />
-                For Employers
-              </TabsTrigger>
-              <TabsTrigger value="jobseekers" className="text-sm">
-                <User className="h-4 w-4" />
-                For Job Seekers
-              </TabsTrigger>
-            </TabsList>
-
-            <TabsContent value="employers">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {features.map((feature, index) => (
               <motion.div
-                variants={staggerContainer}
-                initial="initial"
-                whileInView="animate"
+                key={feature.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="grid grid-cols-1 md:grid-cols-3 gap-8"
+                whileHover={{ y: -5 }}
               >
-                {[
-                  {
-                    step: "1",
-                    title: "Post Requirements",
-                    desc: "Tell us about your ideal candidate and role requirements.",
-                  },
-                  {
-                    step: "2",
-                    title: "Review Candidates",
-                    desc: "We'll match and present qualified candidates for your review.",
-                  },
-                  {
-                    step: "3",
-                    title: "Make Your Hire",
-                    desc: "Interview and hire the perfect candidate for your team.",
-                  },
-                ].map((item, index) => (
-                  <motion.div
-                    key={index}
-                    variants={fadeInUp}
-                    className="text-center"
-                  >
-                    <div className="w-16 h-16 bg-teal-600 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
-                      {item.step}
+                <Card className="h-full hover:shadow-lg transition-all duration-300">
+                  <CardHeader>
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-teal-100">
+                        <feature.icon className="h-6 w-6 text-teal-600" />
+                      </div>
+                      <Badge variant="secondary">{feature.badge}</Badge>
                     </div>
-                    <h3 className="text-xl font-semibold text-slate-800 mb-2">
-                      {item.title}
-                    </h3>
-                    <p className="text-slate-600">{item.desc}</p>
-                  </motion.div>
-                ))}
+                    <CardTitle className="text-xl">{feature.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <CardDescription className="text-base">
+                      {feature.description}
+                    </CardDescription>
+                  </CardContent>
+                </Card>
               </motion.div>
-            </TabsContent>
-
-            <TabsContent value="jobseekers">
-              <motion.div
-                variants={staggerContainer}
-                initial="initial"
-                whileInView="animate"
-                viewport={{ once: true }}
-                className="grid grid-cols-1 md:grid-cols-3 gap-8"
-              >
-                {[
-                  {
-                    step: "1",
-                    title: "Upload Your CV",
-                    desc: "Share your resume and tell us about your career goals.",
-                  },
-                  {
-                    step: "2",
-                    title: "Get Matched",
-                    desc: "We'll connect you with relevant opportunities from top companies.",
-                  },
-                  {
-                    step: "3",
-                    title: "Land Your Job",
-                    desc: "Interview with confidence and secure your dream position.",
-                  },
-                ].map((item, index) => (
-                  <motion.div
-                    key={index}
-                    variants={fadeInUp}
-                    className="text-center"
-                  >
-                    <div className="w-16 h-16 bg-teal-600 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
-                      {item.step}
-                    </div>
-                    <h3 className="text-xl font-semibold text-slate-800 mb-2">
-                      {item.title}
-                    </h3>
-                    <p className="text-slate-600">{item.desc}</p>
-                  </motion.div>
-                ))}
-              </motion.div>
-            </TabsContent>
-          </Tabs>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* Testimonials */}
       <section className="py-20 bg-slate-50">
-        <div className="container mx-auto px-4">
+        <div className="container">
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.8 }}
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl font-bold text-slate-800 mb-4">
+            <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">
               What Our Clients Say
             </h2>
-            <p className="text-xl text-slate-600 max-w-2xl mx-auto">
-              Success stories from companies and professionals we've helped.
+            <p className="mt-4 text-lg text-gray-600">
+              Trusted by companies and professionals worldwide
             </p>
           </motion.div>
 
-          <motion.div
-            variants={staggerContainer}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-8"
-          >
-            {[
-              {
-                name: "Sarah Johnson",
-                role: "HR Director",
-                company: "TechStart Inc",
-                quote:
-                  "They found us the perfect senior developer in just 2 weeks. Exceptional service and quality candidates.",
-                rating: 5,
-              },
-              {
-                name: "Michael Chen",
-                role: "Software Engineer",
-                company: "Recently Hired",
-                quote:
-                  "The team helped me land my dream job at a top tech company. Professional and supportive throughout.",
-                rating: 5,
-              },
-              {
-                name: "Emily Rodriguez",
-                role: "Talent Acquisition",
-                company: "Growth Corp",
-                quote:
-                  "Outstanding recruitment partner. They understand our culture and consistently deliver great matches.",
-                rating: 5,
-              },
-            ].map((testimonial, index) => (
-              <motion.div key={index} variants={fadeInUp}>
-                <Card className="h-full bg-white border-slate-200">
-                  <CardContent className="p-6">
-                    <div className="flex mb-4">
-                      {[...Array(testimonial.rating)].map((_, i) => (
+          <div className="max-w-4xl mx-auto">
+            <motion.div
+              key={currentIndex}
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.5 }}
+            >
+              <Card className="border-none shadow-lg">
+                <CardContent className="p-8 text-center">
+                  <div className="flex justify-center mb-4">
+                    {[...Array(testimonials[currentIndex].rating)].map(
+                      (_, i) => (
                         <Star
                           key={i}
-                          className="h-5 w-5 text-yellow-400 fill-current"
+                          className="h-5 w-5 fill-yellow-400 text-yellow-400"
                         />
-                      ))}
+                      )
+                    )}
+                  </div>
+
+                  <blockquote className="text-lg text-gray-700 mb-6 italic">
+                    "{testimonials[currentIndex].content}"
+                  </blockquote>
+
+                  <div className="flex items-center justify-center space-x-4">
+                    <Avatar className="h-12 w-12">
+                      <AvatarImage
+                        src={
+                          testimonials[currentIndex].avatar ||
+                          "/placeholder.svg"
+                        }
+                      />
+                      <AvatarFallback>
+                        {testimonials[currentIndex].name
+                          .split(" ")
+                          .map((n) => n[0])
+                          .join("")}
+                      </AvatarFallback>
+                    </Avatar>
+                    <div className="text-left">
+                      <p className="font-semibold text-gray-900">
+                        {testimonials[currentIndex].name}
+                      </p>
+                      <p className="text-sm text-gray-600">
+                        {testimonials[currentIndex].role} at{" "}
+                        {testimonials[currentIndex].company}
+                      </p>
                     </div>
-                    <p className="text-slate-600 mb-6 italic">
-                      "{testimonial.quote}"
-                    </p>
-                    <div className="flex items-center">
-                      <div className="w-12 h-12 bg-teal-100 rounded-full flex items-center justify-center mr-4">
-                        <User className="h-6 w-6 text-teal-600" />
-                      </div>
-                      <div>
-                        <p className="font-semibold text-slate-800">
-                          {testimonial.name}
-                        </p>
-                        <p className="text-sm text-slate-600">
-                          {testimonial.role}
-                        </p>
-                        <p className="text-sm text-teal-600">
-                          {testimonial.company}
-                        </p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </motion.div>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            <div className="flex justify-center mt-8 space-x-2">
+              {testimonials.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentIndex(index)}
+                  className={`h-2 w-2 rounded-full transition-colors ${
+                    index === currentIndex ? "bg-teal-600" : "bg-gray-300"
+                  }`}
+                />
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Client Logos */}
       <ClientLogos />
-
-      {/* Lead Form Section */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl font-bold text-slate-800 mb-4">
-              Get Started Today
-            </h2>
-            <p className="text-xl text-slate-600 max-w-2xl mx-auto">
-              Ready to find your next hire or dream job? Let's connect.
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="max-w-4xl mx-auto"
-          >
-            <Tabs defaultValue="employer" className="w-full">
-              <TabsList className="grid w-full grid-cols-2 mb-8">
-                <TabsTrigger value="employer" className="text-sm">
-                  I'm an Employer
-                </TabsTrigger>
-                <TabsTrigger value="jobseeker" className="text-sm">
-                  I'm a Job Seeker
-                </TabsTrigger>
-              </TabsList>
-
-              <TabsContent value="employer">
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="flex items-center text-slate-800">
-                      <Building className="mr-2 h-5 w-5 text-teal-600" />
-                      Employer Information
-                    </CardTitle>
-                    <CardDescription>
-                      Tell us about your hiring needs and we'll get back to you
-                      within 24 hours.
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent className="space-y-4">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div>
-                        <label className="text-sm font-medium text-slate-700 mb-2 block">
-                          Full Name
-                        </label>
-                        <Input placeholder="John Doe" />
-                      </div>
-                      <div>
-                        <label className="text-sm font-medium text-slate-700 mb-2 block">
-                          Company Name
-                        </label>
-                        <Input placeholder="Your Company" />
-                      </div>
-                    </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div>
-                        <label className="text-sm font-medium text-slate-700 mb-2 block">
-                          Email Address
-                        </label>
-                        <Input type="email" placeholder="john@company.com" />
-                      </div>
-                      <div>
-                        <label className="text-sm font-medium text-slate-700 mb-2 block">
-                          Role to Fill
-                        </label>
-                        <Input placeholder="e.g., Senior Developer" />
-                      </div>
-                    </div>
-                    <div>
-                      <label className="text-sm font-medium text-slate-700 mb-2 block">
-                        Additional Requirements
-                      </label>
-                      <Textarea
-                        placeholder="Tell us more about the role, required skills, experience level, etc."
-                        rows={4}
-                      />
-                    </div>
-                    <Button className="w-full bg-teal-600 hover:bg-teal-700">
-                      Submit Hiring Request
-                    </Button>
-                  </CardContent>
-                </Card>
-              </TabsContent>
-
-              <TabsContent value="jobseeker">
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="flex items-center text-slate-800">
-                      <User className="mr-2 h-5 w-5 text-teal-600" />
-                      Job Seeker Information
-                    </CardTitle>
-                    <CardDescription>
-                      Share your details and we'll match you with relevant
-                      opportunities.
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent className="space-y-4">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div>
-                        <label className="text-sm font-medium text-slate-700 mb-2 block">
-                          Full Name
-                        </label>
-                        <Input placeholder="Jane Smith" />
-                      </div>
-                      <div>
-                        <label className="text-sm font-medium text-slate-700 mb-2 block">
-                          Phone Number
-                        </label>
-                        <Input placeholder="+1 (555) 123-4567" />
-                      </div>
-                    </div>
-                    <div>
-                      <label className="text-sm font-medium text-slate-700 mb-2 block">
-                        Email Address
-                      </label>
-                      <Input type="email" placeholder="jane@email.com" />
-                    </div>
-                    <div>
-                      <label className="text-sm font-medium text-slate-700 mb-2 block">
-                        Upload Resume
-                      </label>
-                      <div className="border-2 border-dashed border-slate-300 rounded-lg p-6 text-center hover:border-teal-400 transition-colors">
-                        <Upload className="mx-auto h-12 w-12 text-slate-400 mb-4" />
-                        <p className="text-slate-600">
-                          Click to upload or drag and drop
-                        </p>
-                        <p className="text-sm text-slate-500 mt-1">
-                          PDF, DOC, DOCX (max 5MB)
-                        </p>
-                      </div>
-                    </div>
-                    <div>
-                      <label className="text-sm font-medium text-slate-700 mb-2 block">
-                        Career Goals
-                      </label>
-                      <Textarea
-                        placeholder="Tell us about your ideal role, preferred industries, salary expectations, etc."
-                        rows={4}
-                      />
-                    </div>
-                    <Button className="w-full bg-teal-600 hover:bg-teal-700">
-                      Submit Application
-                    </Button>
-                  </CardContent>
-                </Card>
-              </TabsContent>
-            </Tabs>
-          </motion.div>
-        </div>
-      </section>
 
       {/* Blog Preview */}
       <section className="py-20 bg-slate-50">
@@ -827,6 +694,70 @@ export default function HomePage() {
                 </Card>
               </motion.div>
             ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-20 bg-white">
+        <div className="container">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="max-w-3xl mx-auto"
+          >
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                Frequently Asked Questions
+              </h2>
+              <p className="text-lg text-gray-600">
+                Quick answers to common questions
+              </p>
+            </div>
+
+            <div className="space-y-6">
+              {[
+                {
+                  question: "How long does the recruitment process take?",
+                  answer:
+                    "Our average time to hire is 18 days, but this can vary depending on the role complexity and your specific requirements.",
+                },
+                {
+                  question: "What industries do you specialize in?",
+                  answer:
+                    "We specialize in technology, finance, healthcare, and consulting, with deep expertise in technical roles and executive positions.",
+                },
+                {
+                  question: "Do you offer any guarantees?",
+                  answer:
+                    "Yes, we offer a 90-day replacement guarantee. If a placed candidate doesn't work out within 90 days, we'll find a replacement at no additional cost.",
+                },
+                {
+                  question: "How much do your services cost?",
+                  answer:
+                    "Our pricing varies by service type and role level. Contact us for a customized quote based on your specific needs.",
+                },
+              ].map((faq, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                >
+                  <Card>
+                    <CardContent className="p-6">
+                      <h3 className="text-lg font-semibold mb-3">
+                        {faq.question}
+                      </h3>
+                      <p className="text-gray-600">{faq.answer}</p>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
           </motion.div>
         </div>
       </section>

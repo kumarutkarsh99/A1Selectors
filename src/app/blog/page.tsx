@@ -13,11 +13,6 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Search, Calendar, User, ArrowRight, Clock } from "lucide-react";
 
-// Add interface at the top
-// interface BlogPageProps {
-//   onPostClick?: (postId: number) => void;
-// }
-
 const fadeInUp = {
   initial: { opacity: 0, y: 60 },
   animate: { opacity: 1, y: 0 },
