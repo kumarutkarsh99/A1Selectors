@@ -1,10 +1,14 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import {
   Building,
   Users,
@@ -12,17 +16,17 @@ import {
   Clock,
   CheckCircle,
   Star,
-  ArrowRight,
   Search,
   FileText,
   UserCheck,
-} from "lucide-react"
+} from "lucide-react";
+import { useRouter } from "next/navigation";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 60 },
   animate: { opacity: 1, y: 0 },
   transition: { duration: 0.6 },
-}
+};
 
 const staggerContainer = {
   animate: {
@@ -30,9 +34,15 @@ const staggerContainer = {
       staggerChildren: 0.1,
     },
   },
-}
+};
 
 export default function EmployersPage() {
+  const router = useRouter();
+
+  const handleClick = (): void => {
+    router.push("/employers/formpage");
+  };
+
   return (
     <div className="min-h-screen bg-white pt-16">
       {/* Hero Section */}
@@ -45,22 +55,28 @@ export default function EmployersPage() {
             className="text-center max-w-4xl mx-auto"
           >
             <h1 className="text-5xl md:text-6xl font-bold text-slate-800 mb-6">
-              Find Top Talent for Your <span className="text-teal-600">Growing Team</span>
+              Find Top Talent for Your{" "}
+              <span className="text-teal-600">Growing Team</span>
             </h1>
             <p className="text-xl md:text-2xl text-slate-600 mb-8 max-w-3xl mx-auto">
-              Access our curated network of skilled professionals across tech, finance, healthcare, and more.
+              Access our curated network of skilled professionals across tech,
+              finance, healthcare, and more.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-teal-600 hover:bg-teal-700 text-white px-8 py-3 text-lg">
-                <Search className="mr-2 h-5 w-5" />
-                Browse Candidates
+              <Button
+                onClick={handleClick}
+                size="lg"
+                className="bg-teal-600 hover:bg-teal-700 text-white px-8 py-3 text-lg cursor-pointer"
+              >
+                <Search className="h-5 w-5" />
+                Contact Us
               </Button>
               <Button
                 size="lg"
                 variant="outline"
                 className="border-teal-600 text-teal-600 hover:bg-teal-50 px-8 py-3 text-lg bg-transparent"
               >
-                <Building className="mr-2 h-5 w-5" />
+                <Building className="h-5 w-5" />
                 Post a Job
               </Button>
             </div>
@@ -84,11 +100,17 @@ export default function EmployersPage() {
               { number: "95%", label: "Success Rate", icon: Target },
               { number: "48hrs", label: "Average Match Time", icon: Clock },
             ].map((stat, index) => (
-              <motion.div key={index} variants={fadeInUp} className="text-center">
+              <motion.div
+                key={index}
+                variants={fadeInUp}
+                className="text-center"
+              >
                 <div className="w-16 h-16 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <stat.icon className="h-8 w-8 text-teal-600" />
                 </div>
-                <h3 className="text-3xl font-bold text-slate-800 mb-2">{stat.number}</h3>
+                <h3 className="text-3xl font-bold text-slate-800 mb-2">
+                  {stat.number}
+                </h3>
                 <p className="text-slate-600">{stat.label}</p>
               </motion.div>
             ))}
@@ -106,7 +128,9 @@ export default function EmployersPage() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl font-bold text-slate-800 mb-4">Our Recruitment Services</h2>
+            <h2 className="text-4xl font-bold text-slate-800 mb-4">
+              Our Recruitment Services
+            </h2>
             <p className="text-xl text-slate-600 max-w-2xl mx-auto">
               Comprehensive hiring solutions tailored to your business needs.
             </p>
@@ -123,20 +147,38 @@ export default function EmployersPage() {
               {
                 icon: Search,
                 title: "Executive Search",
-                description: "Find senior-level executives and leadership talent for critical roles.",
-                features: ["C-level positions", "Board members", "VP & Director roles", "Confidential searches"],
+                description:
+                  "Find senior-level executives and leadership talent for critical roles.",
+                features: [
+                  "C-level positions",
+                  "Board members",
+                  "VP & Director roles",
+                  "Confidential searches",
+                ],
               },
               {
                 icon: Users,
                 title: "Volume Hiring",
-                description: "Scale your team quickly with our bulk recruitment solutions.",
-                features: ["Multiple positions", "Fast turnaround", "Streamlined process", "Quality assurance"],
+                description:
+                  "Scale your team quickly with our bulk recruitment solutions.",
+                features: [
+                  "Multiple positions",
+                  "Fast turnaround",
+                  "Streamlined process",
+                  "Quality assurance",
+                ],
               },
               {
                 icon: Target,
                 title: "Specialized Roles",
-                description: "Expert recruitment for niche and technical positions.",
-                features: ["Tech specialists", "Healthcare professionals", "Finance experts", "Industry veterans"],
+                description:
+                  "Expert recruitment for niche and technical positions.",
+                features: [
+                  "Tech specialists",
+                  "Healthcare professionals",
+                  "Finance experts",
+                  "Industry veterans",
+                ],
               },
             ].map((service, index) => (
               <motion.div key={index} variants={fadeInUp}>
@@ -145,13 +187,20 @@ export default function EmployersPage() {
                     <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mb-4">
                       <service.icon className="h-6 w-6 text-teal-600" />
                     </div>
-                    <CardTitle className="text-slate-800">{service.title}</CardTitle>
-                    <CardDescription className="text-slate-600">{service.description}</CardDescription>
+                    <CardTitle className="text-slate-800">
+                      {service.title}
+                    </CardTitle>
+                    <CardDescription className="text-slate-600">
+                      {service.description}
+                    </CardDescription>
                   </CardHeader>
                   <CardContent>
                     <ul className="space-y-2 mb-6">
                       {service.features.map((feature, idx) => (
-                        <li key={idx} className="flex items-center text-sm text-slate-600">
+                        <li
+                          key={idx}
+                          className="flex items-center text-sm text-slate-600"
+                        >
                           <CheckCircle className="h-4 w-4 text-teal-600 mr-2 flex-shrink-0" />
                           {feature}
                         </li>
@@ -181,9 +230,12 @@ export default function EmployersPage() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl font-bold text-slate-800 mb-4">Our Hiring Process</h2>
+            <h2 className="text-4xl font-bold text-slate-800 mb-4">
+              Our Hiring Process
+            </h2>
             <p className="text-xl text-slate-600 max-w-2xl mx-auto">
-              A streamlined approach to finding the perfect candidates for your team.
+              A streamlined approach to finding the perfect candidates for your
+              team.
             </p>
           </motion.div>
 
@@ -212,7 +264,8 @@ export default function EmployersPage() {
               {
                 step: "03",
                 title: "Screening & Vetting",
-                description: "We conduct thorough interviews and assessments to ensure candidates meet your standards.",
+                description:
+                  "We conduct thorough interviews and assessments to ensure candidates meet your standards.",
                 icon: Users,
               },
               {
@@ -223,7 +276,11 @@ export default function EmployersPage() {
                 icon: UserCheck,
               },
             ].map((process, index) => (
-              <motion.div key={index} variants={fadeInUp} className="flex items-start mb-12 last:mb-0">
+              <motion.div
+                key={index}
+                variants={fadeInUp}
+                className="flex items-start mb-12 last:mb-0"
+              >
                 <div className="flex-shrink-0 mr-6">
                   <div className="w-16 h-16 bg-teal-600 text-white rounded-full flex items-center justify-center text-xl font-bold">
                     {process.step}
@@ -232,9 +289,13 @@ export default function EmployersPage() {
                 <div className="flex-1">
                   <div className="flex items-center mb-3">
                     <process.icon className="h-6 w-6 text-teal-600 mr-3" />
-                    <h3 className="text-xl font-semibold text-slate-800">{process.title}</h3>
+                    <h3 className="text-xl font-semibold text-slate-800">
+                      {process.title}
+                    </h3>
                   </div>
-                  <p className="text-slate-600 text-lg">{process.description}</p>
+                  <p className="text-slate-600 text-lg">
+                    {process.description}
+                  </p>
                 </div>
               </motion.div>
             ))}
@@ -252,9 +313,12 @@ export default function EmployersPage() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl font-bold text-slate-800 mb-4">What Employers Say</h2>
+            <h2 className="text-4xl font-bold text-slate-800 mb-4">
+              What Employers Say
+            </h2>
             <p className="text-xl text-slate-600 max-w-2xl mx-auto">
-              Success stories from companies who found their perfect hires through us.
+              Success stories from companies who found their perfect hires
+              through us.
             </p>
           </motion.div>
 
@@ -275,7 +339,8 @@ export default function EmployersPage() {
                 rating: 5,
               },
               {
-                quote: "Outstanding service! They understood our culture and found candidates who were perfect fits.",
+                quote:
+                  "Outstanding service! They understood our culture and found candidates who were perfect fits.",
                 author: "Michael Chen",
                 role: "HR Director",
                 company: "Growth Corp",
@@ -287,14 +352,23 @@ export default function EmployersPage() {
                   <CardContent className="p-8">
                     <div className="flex mb-4">
                       {[...Array(testimonial.rating)].map((_, i) => (
-                        <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
+                        <Star
+                          key={i}
+                          className="h-5 w-5 text-yellow-400 fill-current"
+                        />
                       ))}
                     </div>
-                    <p className="text-slate-600 text-lg mb-6 italic">"{testimonial.quote}"</p>
+                    <p className="text-slate-600 text-lg mb-6 italic">
+                      "{testimonial.quote}"
+                    </p>
                     <div>
-                      <p className="font-semibold text-slate-800">{testimonial.author}</p>
+                      <p className="font-semibold text-slate-800">
+                        {testimonial.author}
+                      </p>
                       <p className="text-slate-600">{testimonial.role}</p>
-                      <p className="text-teal-600 font-medium">{testimonial.company}</p>
+                      <p className="text-teal-600 font-medium">
+                        {testimonial.company}
+                      </p>
                     </div>
                   </CardContent>
                 </Card>
@@ -303,74 +377,6 @@ export default function EmployersPage() {
           </motion.div>
         </div>
       </section>
-
-      {/* Contact Form */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="max-w-2xl mx-auto"
-          >
-            <div className="text-center mb-12">
-              <h2 className="text-4xl font-bold text-slate-800 mb-4">Ready to Hire?</h2>
-              <p className="text-xl text-slate-600">
-                Tell us about your hiring needs and we'll get back to you within 24 hours.
-              </p>
-            </div>
-
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center text-slate-800">
-                  <Building className="mr-2 h-5 w-5 text-teal-600" />
-                  Start Your Hiring Journey
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="text-sm font-medium text-slate-700 mb-2 block">Full Name</label>
-                    <Input placeholder="John Doe" />
-                  </div>
-                  <div>
-                    <label className="text-sm font-medium text-slate-700 mb-2 block">Company Name</label>
-                    <Input placeholder="Your Company" />
-                  </div>
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="text-sm font-medium text-slate-700 mb-2 block">Email Address</label>
-                    <Input type="email" placeholder="john@company.com" />
-                  </div>
-                  <div>
-                    <label className="text-sm font-medium text-slate-700 mb-2 block">Phone Number</label>
-                    <Input placeholder="+1 (555) 123-4567" />
-                  </div>
-                </div>
-                <div>
-                  <label className="text-sm font-medium text-slate-700 mb-2 block">Role to Fill</label>
-                  <Input placeholder="e.g., Senior Software Engineer" />
-                </div>
-                <div>
-                  <label className="text-sm font-medium text-slate-700 mb-2 block">
-                    Job Description & Requirements
-                  </label>
-                  <Textarea
-                    placeholder="Tell us about the role, required skills, experience level, salary range, etc."
-                    rows={5}
-                  />
-                </div>
-                <Button className="w-full bg-teal-600 hover:bg-teal-700 text-lg py-3">
-                  Submit Hiring Request
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-              </CardContent>
-            </Card>
-          </motion.div>
-        </div>
-      </section>
     </div>
-  )
+  );
 }

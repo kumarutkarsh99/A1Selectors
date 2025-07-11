@@ -1,22 +1,23 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Badge } from "@/components/ui/badge"
-import { Search, Calendar, User, ArrowRight, Clock } from "lucide-react"
-
-// Add interface at the top
-interface BlogPageProps {
-  onPostClick?: (postId: number) => void
-}
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Badge } from "@/components/ui/badge";
+import { Search, Calendar, User, ArrowRight, Clock } from "lucide-react";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 60 },
   animate: { opacity: 1, y: 0 },
   transition: { duration: 0.6 },
-}
+};
 
 const staggerContainer = {
   animate: {
@@ -24,10 +25,10 @@ const staggerContainer = {
       staggerChildren: 0.1,
     },
   },
-}
+};
 
 // Update the component signature
-export default function BlogPage({ onPostClick }: BlogPageProps) {
+export default function BlogPage() {
   const blogPosts = [
     {
       id: 1,
@@ -101,9 +102,15 @@ export default function BlogPage({ onPostClick }: BlogPageProps) {
       image: "/placeholder.svg?height=200&width=400",
       featured: false,
     },
-  ]
+  ];
 
-  const categories = ["All", "Tech Trends", "Career Tips", "HR Insights", "Industry News"]
+  const categories = [
+    "All",
+    "Tech Trends",
+    "Career Tips",
+    "HR Insights",
+    "Industry News",
+  ];
 
   return (
     <div className="min-h-screen bg-slate-50 pt-16">
@@ -116,9 +123,12 @@ export default function BlogPage({ onPostClick }: BlogPageProps) {
             transition={{ duration: 0.6 }}
             className="text-center mb-12"
           >
-            <h1 className="text-4xl md:text-5xl font-bold text-slate-800 mb-4">Career Insights & Industry News</h1>
+            <h1 className="text-4xl md:text-5xl font-bold text-slate-800 mb-4">
+              Career Insights & Industry News
+            </h1>
             <p className="text-xl text-slate-600 max-w-2xl mx-auto">
-              Stay updated with the latest trends in recruitment, career development, and workplace insights.
+              Stay updated with the latest trends in recruitment, career
+              development, and workplace insights.
             </p>
           </motion.div>
 
@@ -164,7 +174,9 @@ export default function BlogPage({ onPostClick }: BlogPageProps) {
             viewport={{ once: true }}
             className="mb-12"
           >
-            <h2 className="text-2xl font-bold text-slate-800 mb-8">Featured Article</h2>
+            <h2 className="text-2xl font-bold text-slate-800 mb-8">
+              Featured Article
+            </h2>
             <Card className="overflow-hidden bg-white hover:shadow-lg transition-all duration-300">
               <div className="md:flex">
                 <div className="md:w-1/2">
@@ -176,7 +188,9 @@ export default function BlogPage({ onPostClick }: BlogPageProps) {
                 </div>
                 <div className="md:w-1/2 p-8">
                   <div className="flex items-center gap-4 mb-4">
-                    <Badge className="bg-teal-100 text-teal-700">{blogPosts[0].category}</Badge>
+                    <Badge className="bg-teal-100 text-teal-700">
+                      {blogPosts[0].category}
+                    </Badge>
                     <div className="flex items-center text-sm text-slate-500">
                       <Calendar className="h-4 w-4 mr-1" />
                       {blogPosts[0].date}
@@ -193,9 +207,11 @@ export default function BlogPage({ onPostClick }: BlogPageProps) {
                   <div className="flex items-center justify-between">
                     <div className="flex items-center">
                       <User className="h-4 w-4 text-slate-400 mr-2" />
-                      <span className="text-sm text-slate-600">{blogPosts[0].author}</span>
+                      <span className="text-sm text-slate-600">
+                        {blogPosts[0].author}
+                      </span>
                     </div>
-                    <Button className="bg-teal-600 hover:bg-teal-700" onClick={() => onPostClick?.(blogPosts[0].id)}>
+                    <Button className="bg-teal-600 hover:bg-teal-700">
                       Read More
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
@@ -217,7 +233,9 @@ export default function BlogPage({ onPostClick }: BlogPageProps) {
             viewport={{ once: true }}
             className="mb-8"
           >
-            <h2 className="text-2xl font-bold text-slate-800">Latest Articles</h2>
+            <h2 className="text-2xl font-bold text-slate-800">
+              Latest Articles
+            </h2>
           </motion.div>
 
           <motion.div
@@ -239,7 +257,10 @@ export default function BlogPage({ onPostClick }: BlogPageProps) {
                   </div>
                   <CardHeader>
                     <div className="flex items-center gap-4 mb-2">
-                      <Badge variant="secondary" className="bg-teal-100 text-teal-700">
+                      <Badge
+                        variant="secondary"
+                        className="bg-teal-100 text-teal-700"
+                      >
                         {post.category}
                       </Badge>
                       <div className="flex items-center text-sm text-slate-500">
@@ -252,7 +273,9 @@ export default function BlogPage({ onPostClick }: BlogPageProps) {
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <CardDescription className="text-slate-600 mb-4 line-clamp-3">{post.excerpt}</CardDescription>
+                    <CardDescription className="text-slate-600 mb-4 line-clamp-3">
+                      {post.excerpt}
+                    </CardDescription>
                     <div className="flex items-center justify-between">
                       <div className="flex items-center text-sm text-slate-500">
                         <User className="h-4 w-4 mr-1" />
@@ -267,7 +290,6 @@ export default function BlogPage({ onPostClick }: BlogPageProps) {
                       variant="ghost"
                       size="sm"
                       className="w-full mt-4 text-teal-600 hover:text-teal-700 hover:bg-teal-50"
-                      onClick={() => onPostClick?.(post.id)}
                     >
                       Read More
                       <ArrowRight className="ml-2 h-4 w-4" />
@@ -303,18 +325,21 @@ export default function BlogPage({ onPostClick }: BlogPageProps) {
           >
             <h2 className="text-3xl font-bold text-white mb-4">Stay Updated</h2>
             <p className="text-teal-100 mb-8">
-              Get the latest career insights and industry news delivered to your inbox weekly.
+              Get the latest career insights and industry news delivered to your
+              inbox weekly.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
               <Input
                 placeholder="Enter your email"
                 className="bg-white border-white text-slate-800 placeholder:text-slate-400"
               />
-              <Button className="bg-white text-teal-600 hover:bg-slate-50 whitespace-nowrap">Subscribe Now</Button>
+              <Button className="bg-white text-teal-600 hover:bg-slate-50 whitespace-nowrap">
+                Subscribe Now
+              </Button>
             </div>
           </motion.div>
         </div>
       </section>
     </div>
-  )
+  );
 }
