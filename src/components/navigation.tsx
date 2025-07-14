@@ -7,6 +7,13 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuSeparator,
+  DropdownMenuItem,
+} from "@/components/ui/dropdown-menu";
+import {
   Menu,
   Upload,
   Search,
@@ -15,6 +22,9 @@ import {
   Info,
   BookOpen,
   Phone,
+  Briefcase,
+  Cpu,
+  Layers,
 } from "lucide-react";
 
 export default function Navigation() {
@@ -24,10 +34,39 @@ export default function Navigation() {
 
   const navItems = useMemo(
     () => [
-      // { href: "/", label: "Home", icon: Home },
-      { href: "/services", label: "Our Services", icon: Search },
+      {
+        href: "/services",
+        label: "Our Services",
+        icon: Search,
+        children: [
+          {
+            href: "/services/contract-hiring",
+            label: "Contract Hiring",
+            icon: Briefcase,
+          },
+          {
+            href: "/services/it-non-it",
+            label: "IT / Non‑IT Services",
+            icon: Cpu,
+          },
+          { href: "/services/rpo", label: "RPO", icon: Users },
+          { href: "/services/staffing", label: "Staffing", icon: Layers },
+        ],
+      },
       { href: "/employers", label: "For Companies", icon: Building },
-      { href: "/jobseekers", label: "For Talent", icon: Users },
+      {
+        href: "/jobseekers",
+        label: "For Talent",
+        icon: Users,
+        children: [
+          { href: "/jobs", label: "Find Jobs", icon: Search },
+          {
+            href: "/jobseekers/career-services",
+            label: "Career Services",
+            icon: BookOpen,
+          },
+        ],
+      },
       { href: "/about", label: "About Us", icon: Info },
       { href: "/blog", label: "Blog", icon: BookOpen },
       { href: "/contact", label: "Contact", icon: Phone },
@@ -35,18 +74,14 @@ export default function Navigation() {
     []
   );
 
-  // Decide active link
   const isActive = (href: string) =>
     href === "/"
       ? pathname === "/"
       : pathname === href || pathname.startsWith(href + "/");
 
+  // Prefetch on mobile open
   useEffect(() => {
-    if (isOpen) {
-      navItems.forEach((item) => {
-        router.prefetch(item.href);
-      });
-    }
+    if (isOpen) navItems.forEach((item) => router.prefetch(item.href));
   }, [isOpen, navItems, router]);
 
   return (
@@ -71,20 +106,66 @@ export default function Navigation() {
 
           {/* Desktop Links */}
           <div className="hidden lg:flex items-center space-x-8">
-            {navItems.map(({ href, label }) => (
-              <Link
-                key={href}
-                href={href}
-                aria-current={isActive(href) ? "page" : undefined}
-                className={`text-sm font-medium transition-colors ${
-                  isActive(href)
-                    ? "text-teal-600"
-                    : "text-slate-600 hover:text-teal-600"
-                }`}
-              >
-                {label}
-              </Link>
-            ))}
+            {navItems.map(({ href, label, children }) =>
+              children ? (
+                <DropdownMenu key={href}>
+                  <DropdownMenuTrigger asChild>
+                    <button
+                      className={`text-sm font-medium transition-colors cursor-pointer ${
+                        isActive(href)
+                          ? "text-teal-600"
+                          : "text-slate-600 hover:text-teal-600"
+                      }`}
+                    >
+                      {label}
+                    </button>
+                  </DropdownMenuTrigger>
+
+                  <DropdownMenuContent
+                    align="start"
+                    sideOffset={8}
+                    className="w-48 bg-white border border-slate-200 shadow-lg rounded-lg py-1"
+                  >
+                    {/* <DropdownMenuLabel className="px-4 text-xs text-slate-500 uppercase">
+                      {label}
+                    </DropdownMenuLabel> */}
+
+                    {children.map((sub, idx) => (
+                      <div key={sub.href}>
+                        {idx === 2 && (
+                          <DropdownMenuSeparator className="my-1" />
+                        )}
+
+                        <DropdownMenuItem
+                          asChild
+                          className="px-4 py-2 flex items-center space-x-2 hover:bg-teal-50 focus:bg-teal-50 cursor-pointer"
+                        >
+                          <Link href={sub.href}>
+                            {sub.icon && (
+                              <sub.icon className="h-4 w-4 text-teal-600" />
+                            )}
+                            <span>{sub.label}</span>
+                          </Link>
+                        </DropdownMenuItem>
+                      </div>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              ) : (
+                <Link
+                  key={href}
+                  href={href}
+                  aria-current={isActive(href) ? "page" : undefined}
+                  className={`text-sm font-medium transition-colors ${
+                    isActive(href)
+                      ? "text-teal-600"
+                      : "text-slate-600 hover:text-teal-600"
+                  }`}
+                >
+                  {label}
+                </Link>
+              )
+            )}
           </div>
 
           {/* Desktop CTAs */}
@@ -115,7 +196,6 @@ export default function Navigation() {
                 <Menu className="h-6 w-6" />
               </Button>
             </SheetTrigger>
-
             <SheetContent side="right" className="w-80">
               {/* Mobile Header */}
               <div className="flex items-center justify-between mb-8">
@@ -129,22 +209,39 @@ export default function Navigation() {
                 </Link>
               </div>
 
-              {/* Mobile Links */}
+              {/* Mobile Links with indentation for sub‑items */}
               <div className="space-y-4">
-                {navItems.map(({ href, label, icon: Icon }) => (
-                  <Link key={href} href={href} onClick={() => setIsOpen(false)}>
-                    <button
-                      className={`w-full flex items-center px-4 py-3 rounded-lg text-left transition-colors ${
-                        isActive(href)
-                          ? "bg-teal-50 text-teal-600"
-                          : "text-slate-600 hover:bg-slate-50"
-                      }`}
-                      aria-current={isActive(href) ? "page" : undefined}
-                    >
-                      <Icon className="mr-3 h-5 w-5" />
-                      {label}
-                    </button>
-                  </Link>
+                {navItems.map(({ href, label, icon: Icon, children }) => (
+                  <div key={href}>
+                    <Link href={href} onClick={() => setIsOpen(false)}>
+                      <button
+                        className={`w-full flex items-center px-4 py-3 rounded-lg text-left transition-colors ${
+                          isActive(href)
+                            ? "bg-teal-50 text-teal-600"
+                            : "text-slate-600 hover:bg-slate-50"
+                        }`}
+                        aria-current={isActive(href) ? "page" : undefined}
+                      >
+                        {Icon && <Icon className="mr-3 h-5 w-5" />}
+                        {label}
+                      </button>
+                    </Link>
+                    {children && (
+                      <div className="ml-8 mt-2 space-y-1">
+                        {children.map((sub) => (
+                          <Link
+                            key={sub.href}
+                            href={sub.href}
+                            onClick={() => setIsOpen(false)}
+                          >
+                            <button className="w-full text-sm text-slate-600 hover:text-teal-600">
+                              {sub.label}
+                            </button>
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
                 ))}
               </div>
 

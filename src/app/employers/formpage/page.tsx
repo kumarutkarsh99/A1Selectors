@@ -86,9 +86,18 @@ export default function EmployersPage() {
                     rows={5}
                   />
                 </div>
+                <div>
+                  <label className="text-sm font-medium text-slate-700 mb-2 block">
+                    Message for Us
+                  </label>
+                  <Textarea
+                    placeholder="Let us know your hiring expectations or any specific requirements you have."
+                    rows={5}
+                  />
+                </div>
                 <Button
                   onClick={handleSubmit}
-                  className="w-full bg-teal-600 hover:bg-teal-700 text-lg py-3"
+                  className="w-full bg-teal-600 hover:bg-teal-700 text-lg py-3 cursor-pointer"
                 >
                   Submit Request
                   <ArrowRight className="ml-2 h-5 w-5" />
