@@ -45,11 +45,11 @@ export default function JobSeekersPage() {
               <CardHeader>
                 <CardTitle className="flex items-center text-slate-800">
                   <User className="mr-2 h-5 w-5 text-teal-600" />
-                  Create Your Profile
+                  Upload Your Profile
                 </CardTitle>
                 <CardDescription>
-                  Tell us about yourself and we'll start matching you with
-                  relevant opportunities.
+                  Tell us about yourself and we'll connect with you for relevant
+                  opportunities.
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
@@ -66,12 +66,18 @@ export default function JobSeekersPage() {
                     </label>
                     <Input placeholder="+1 (555) 123-4567" />
                   </div>
-                </div>
-                <div>
-                  <label className="text-sm font-medium text-slate-700 mb-2 block">
-                    Email Address
-                  </label>
-                  <Input type="email" placeholder="jane@email.com" />
+                  <div>
+                    <label className="text-sm font-medium text-slate-700 mb-2 block">
+                      Email Address
+                    </label>
+                    <Input type="email" placeholder="jane@email.com" />
+                  </div>
+                  <div>
+                    <label className="text-sm font-medium text-slate-700 mb-2 block">
+                      LinkedIn URL
+                    </label>
+                    <Input type="url" placeholder="linkedin.com/in/jane/" />
+                  </div>
                 </div>
                 <div>
                   <label className="text-sm font-medium text-slate-700 mb-2 block">
@@ -104,7 +110,7 @@ export default function JobSeekersPage() {
                 </div>
                 <Button
                   onClick={handleSubmit}
-                  className="w-full bg-teal-600 hover:bg-teal-700 text-lg py-3"
+                  className="w-full bg-teal-600 hover:bg-teal-700 text-lg py-3 cursor-pointer"
                 >
                   Submit Request
                 </Button>

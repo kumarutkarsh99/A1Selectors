@@ -1,18 +1,31 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Badge } from "@/components/ui/badge"
-import { Search, MapPin, Clock, DollarSign, Filter, Bookmark } from "lucide-react"
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Badge } from "@/components/ui/badge";
+import {
+  Search,
+  MapPin,
+  Clock,
+  DollarSign,
+  Filter,
+  Bookmark,
+} from "lucide-react";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 60 },
   animate: { opacity: 1, y: 0 },
   transition: { duration: 0.6 },
-}
+};
 
 const staggerContainer = {
   animate: {
@@ -20,7 +33,7 @@ const staggerContainer = {
       staggerChildren: 0.1,
     },
   },
-}
+};
 
 export default function JobsPage() {
   const jobs = [
@@ -32,7 +45,8 @@ export default function JobsPage() {
       type: "Full-time",
       salary: "$120k - $160k",
       posted: "2 days ago",
-      description: "We're looking for an experienced frontend developer to join our growing team...",
+      description:
+        "We're looking for an experienced frontend developer to join our growing team...",
       skills: ["React", "TypeScript", "Next.js", "Tailwind CSS"],
       remote: true,
     },
@@ -44,7 +58,8 @@ export default function JobsPage() {
       type: "Full-time",
       salary: "$100k - $140k",
       posted: "1 day ago",
-      description: "Join our data science team to build predictive models and drive insights...",
+      description:
+        "Join our data science team to build predictive models and drive insights...",
       skills: ["Python", "Machine Learning", "SQL", "TensorFlow"],
       remote: false,
     },
@@ -56,7 +71,8 @@ export default function JobsPage() {
       type: "Full-time",
       salary: "$110k - $150k",
       posted: "3 days ago",
-      description: "Lead product strategy and work with cross-functional teams...",
+      description:
+        "Lead product strategy and work with cross-functional teams...",
       skills: ["Product Strategy", "Agile", "Analytics", "Leadership"],
       remote: true,
     },
@@ -96,7 +112,7 @@ export default function JobsPage() {
       skills: ["Node.js", "PostgreSQL", "GraphQL", "Microservices"],
       remote: true,
     },
-  ]
+  ];
 
   return (
     <div className="min-h-screen bg-slate-50 pt-16">
@@ -109,9 +125,12 @@ export default function JobsPage() {
             transition={{ duration: 0.6 }}
             className="text-center mb-12"
           >
-            <h1 className="text-4xl md:text-5xl font-bold text-slate-800 mb-4">Find Your Dream Job</h1>
+            <h1 className="text-4xl md:text-5xl font-bold text-slate-800 mb-4">
+              Find Your Dream Job
+            </h1>
             <p className="text-xl text-slate-600 max-w-2xl mx-auto">
-              Discover opportunities from top companies across various industries and locations.
+              Discover opportunities from top companies across various
+              industries and locations.
             </p>
           </motion.div>
 
@@ -128,7 +147,10 @@ export default function JobsPage() {
                   <div className="md:col-span-2">
                     <div className="relative">
                       <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-slate-400" />
-                      <Input placeholder="Job title, keywords, or company" className="pl-10 h-10" />
+                      <Input
+                        placeholder="Job title, keywords, or company"
+                        className="pl-10 h-10"
+                      />
                     </div>
                   </div>
                   <div>
@@ -180,7 +202,10 @@ export default function JobsPage() {
                     </SelectContent>
                   </Select>
 
-                  <Button variant="outline" className="border-teal-600 text-teal-600 hover:bg-teal-50 bg-transparent">
+                  <Button
+                    variant="outline"
+                    className="border-teal-600 text-teal-600 hover:bg-teal-50 bg-transparent"
+                  >
                     <Filter className="mr-2 h-4 w-4" />
                     More Filters
                   </Button>
@@ -192,7 +217,7 @@ export default function JobsPage() {
       </section>
 
       {/* Job Results */}
-      <section className="py-12">
+      <section className="py-12 px-4">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between mb-8">
             <p className="text-slate-600">Showing {jobs.length} jobs</p>
@@ -209,7 +234,12 @@ export default function JobsPage() {
             </Select>
           </div>
 
-          <motion.div variants={staggerContainer} initial="initial" animate="animate" className="space-y-6">
+          <motion.div
+            variants={staggerContainer}
+            initial="initial"
+            animate="animate"
+            className="space-y-6"
+          >
             {jobs.map((job) => (
               <motion.div key={job.id} variants={fadeInUp}>
                 <Card className="hover:shadow-lg transition-all duration-300 bg-white">
@@ -221,12 +251,17 @@ export default function JobsPage() {
                             {job.title}
                           </h3>
                           {job.remote && (
-                            <Badge variant="secondary" className="bg-green-100 text-green-700">
+                            <Badge
+                              variant="secondary"
+                              className="bg-green-100 text-green-700"
+                            >
                               Remote
                             </Badge>
                           )}
                         </div>
-                        <p className="text-teal-600 font-medium mb-2">{job.company}</p>
+                        <p className="text-teal-600 font-medium mb-2">
+                          {job.company}
+                        </p>
                         <div className="flex items-center gap-4 text-sm text-slate-600 mb-3">
                           <div className="flex items-center">
                             <MapPin className="h-4 w-4 mr-1" />
@@ -244,21 +279,31 @@ export default function JobsPage() {
                         <p className="text-slate-600 mb-4">{job.description}</p>
                         <div className="flex flex-wrap gap-2">
                           {job.skills.map((skill, index) => (
-                            <Badge key={index} variant="outline" className="text-slate-600">
+                            <Badge
+                              key={index}
+                              variant="outline"
+                              className="text-slate-600"
+                            >
                               {skill}
                             </Badge>
                           ))}
                         </div>
                       </div>
                       <div className="flex flex-col items-end gap-2 ml-6">
-                        <Button variant="ghost" size="sm" className="text-slate-400 hover:text-teal-600">
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="text-slate-400 hover:text-teal-600"
+                        >
                           <Bookmark className="h-4 w-4" />
                         </Button>
                         <p className="text-sm text-slate-500">{job.posted}</p>
                       </div>
                     </div>
                     <div className="flex gap-3">
-                      <Button className="bg-teal-600 hover:bg-teal-700">Apply Now</Button>
+                      <Button className="bg-teal-600 hover:bg-teal-700">
+                        Apply Now
+                      </Button>
                       <Button
                         variant="outline"
                         className="border-teal-600 text-teal-600 hover:bg-teal-50 bg-transparent"
@@ -287,5 +332,5 @@ export default function JobsPage() {
         </div>
       </section>
     </div>
-  )
+  );
 }

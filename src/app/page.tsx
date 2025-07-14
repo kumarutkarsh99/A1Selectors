@@ -32,6 +32,7 @@ import {
 import ClientLogos from "@/components/client-logos";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Shield, Clock, Globe, Target, Zap } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 const features = [
   {
@@ -158,6 +159,7 @@ const staggerContainer = {
 };
 
 export default function HomePage() {
+  const router = useRouter();
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
@@ -217,7 +219,8 @@ export default function HomePage() {
             >
               <Button
                 size="lg"
-                className="bg-teal-600 hover:bg-teal-700 text-white px-8 py-3 text-lg"
+                onClick={() => router.push("/employers/formpage")}
+                className="bg-teal-600 hover:bg-teal-700 text-white px-8 py-3 text-lg cursor-pointer"
               >
                 <FileText className="h-5 w-5" />
                 Hire Talent
@@ -225,7 +228,8 @@ export default function HomePage() {
               <Button
                 size="lg"
                 variant="outline"
-                className="border-teal-600 text-teal-600 hover:bg-teal-50 px-8 py-3 text-lg bg-transparent"
+                onClick={() => router.push("/jobseekers/formpage")}
+                className="border-teal-600 text-teal-600 hover:bg-teal-50 px-8 py-3 text-lg bg-transparent cursor-pointer"
               >
                 <Upload className="h-5 w-5" />
                 Upload Your CV
@@ -696,14 +700,14 @@ export default function HomePage() {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 px-5 bg-white">
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="max-w-3xl mx-auto"
+            className="max-w-5xl mx-auto"
           >
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-gray-900 mb-4">
@@ -745,8 +749,8 @@ export default function HomePage() {
                   viewport={{ once: true }}
                 >
                   <Card>
-                    <CardContent className="p-6">
-                      <h3 className="text-lg font-semibold mb-3">
+                    <CardContent className="px-6">
+                      <h3 className="text-lg font-semibold mb-2">
                         {faq.question}
                       </h3>
                       <p className="text-gray-600">{faq.answer}</p>
@@ -758,109 +762,6 @@ export default function HomePage() {
           </motion.div>
         </div>
       </section>
-
-      {/* Footer */}
-      <footer className="bg-slate-800 text-white py-16">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-            <div>
-              <h3 className="text-2xl font-bold mb-4 text-teal-400">
-                TalentConnect
-              </h3>
-              <p className="text-slate-300 mb-6">
-                Connecting exceptional talent with outstanding opportunities
-                across industries.
-              </p>
-              <div className="space-y-2">
-                <div className="flex items-center text-slate-300">
-                  <Phone className="h-4 w-4 mr-2 text-teal-400" />
-                  +1 (555) 123-4567
-                </div>
-                <div className="flex items-center text-slate-300">
-                  <Mail className="h-4 w-4 mr-2 text-teal-400" />
-                  hello@talentconnect.com
-                </div>
-                <div className="flex items-center text-slate-300">
-                  <MapPin className="h-4 w-4 mr-2 text-teal-400" />
-                  123 Business Ave, Suite 100
-                </div>
-              </div>
-            </div>
-
-            <div>
-              <h4 className="text-lg font-semibold mb-4">For Employers</h4>
-              <ul className="space-y-2 text-slate-300">
-                <li>
-                  <a href="#" className="hover:text-teal-400 transition-colors">
-                    Post a Job
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-teal-400 transition-colors">
-                    Browse CVs
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-teal-400 transition-colors">
-                    Pricing
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-teal-400 transition-colors">
-                    Success Stories
-                  </a>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="text-lg font-semibold mb-4">For Job Seekers</h4>
-              <ul className="space-y-2 text-slate-300">
-                <li>
-                  <a href="#" className="hover:text-teal-400 transition-colors">
-                    Browse Jobs
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-teal-400 transition-colors">
-                    Upload CV
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-teal-400 transition-colors">
-                    Career Advice
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-teal-400 transition-colors">
-                    Salary Guide
-                  </a>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="text-lg font-semibold mb-4">Stay Updated</h4>
-              <p className="text-slate-300 mb-4">
-                Get the latest job market insights and career tips.
-              </p>
-              <div className="flex gap-2">
-                <Input
-                  placeholder="Enter your email"
-                  className="bg-slate-700 border-slate-600 text-white placeholder:text-slate-400"
-                />
-                <Button className="bg-teal-600 hover:bg-teal-700">
-                  Subscribe
-                </Button>
-              </div>
-            </div>
-          </div>
-
-          <div className="border-t border-slate-700 pt-8 text-center text-slate-400">
-            <p>&copy; 2023 TalentConnect. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }

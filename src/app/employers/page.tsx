@@ -69,15 +69,15 @@ export default function EmployersPage() {
                 className="bg-teal-600 hover:bg-teal-700 text-white px-8 py-3 text-lg cursor-pointer"
               >
                 <Search className="h-5 w-5" />
-                Contact Us
+                Hire Talent
               </Button>
               <Button
                 size="lg"
                 variant="outline"
-                className="border-teal-600 text-teal-600 hover:bg-teal-50 px-8 py-3 text-lg bg-transparent"
+                className="border-teal-600 text-teal-600 hover:bg-teal-50 px-8 py-3 text-lg bg-transparent cursor-pointer"
               >
                 <Building className="h-5 w-5" />
-                Post a Job
+                View CVs
               </Button>
             </div>
           </motion.div>

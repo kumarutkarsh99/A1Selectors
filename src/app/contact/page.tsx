@@ -175,7 +175,7 @@ export default function ContactPage() {
                   </div>
 
                   <Button
-                    className="w-full bg-teal-600 hover:bg-teal-700"
+                    className="w-full bg-teal-600 hover:bg-teal-700 cursor-pointer"
                     size="lg"
                   >
                     Send Message
