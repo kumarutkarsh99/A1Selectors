@@ -10,7 +10,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import {
   Code,
@@ -19,9 +18,6 @@ import {
   Heart,
   Upload,
   Star,
-  MapPin,
-  Phone,
-  Mail,
   Calendar,
   ArrowRight,
   Building,
