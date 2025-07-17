@@ -7,6 +7,13 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Building, ArrowRight } from "lucide-react";
 import { toast } from "sonner";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 export default function EmployersPage() {
   const handleSubmit = () => {
@@ -79,12 +86,18 @@ export default function EmployersPage() {
                 </div>
                 <div>
                   <label className="text-sm font-medium text-slate-700 mb-2 block">
-                    Job Description & Requirements
+                    Job Type
                   </label>
-                  <Textarea
-                    placeholder="Tell us about the role, required skills, experience level, salary range, etc."
-                    rows={5}
-                  />
+                  <Select>
+                    <SelectTrigger className="w-full">
+                      <SelectValue placeholder="Select job type" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="permanent">Permanent</SelectItem>
+                      <SelectItem value="contract">Contract</SelectItem>
+                      <SelectItem value="others">Others</SelectItem>
+                    </SelectContent>
+                  </Select>
                 </div>
                 <div>
                   <label className="text-sm font-medium text-slate-700 mb-2 block">
