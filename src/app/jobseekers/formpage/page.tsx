@@ -9,6 +9,13 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { User, Upload } from "lucide-react";
@@ -101,12 +108,18 @@ export default function JobSeekersPage() {
                 </div>
                 <div>
                   <label className="text-sm font-medium text-slate-700 mb-2 block">
-                    Career Goals & Preferences
+                    Job Type
                   </label>
-                  <Textarea
-                    placeholder="Tell us about your ideal role, preferred industries, salary expectations, location preferences, etc."
-                    rows={5}
-                  />
+                  <Select>
+                    <SelectTrigger className="w-full">
+                      <SelectValue placeholder="Select job type" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="permanent">Permanent</SelectItem>
+                      <SelectItem value="contract">Contract</SelectItem>
+                      <SelectItem value="others">Both</SelectItem>
+                    </SelectContent>
+                  </Select>
                 </div>
                 <Button
                   onClick={handleSubmit}

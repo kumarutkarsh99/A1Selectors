@@ -228,7 +228,7 @@ export default function HomePage() {
                 className="border-teal-600 text-teal-600 hover:bg-teal-50 px-8 py-3 text-lg bg-transparent cursor-pointer"
               >
                 <Upload className="h-5 w-5" />
-                Upload Your CV
+                Get Hired
               </Button>
             </motion.div>
           </motion.div>

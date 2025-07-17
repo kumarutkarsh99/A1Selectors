@@ -1,5 +1,6 @@
 "use client";
 
+import Head from "next/head";
 import {
   Card,
   CardContent,
@@ -14,7 +15,6 @@ import {
   Code,
   Users,
   Search,
-  TrendingUp,
   Building,
   Briefcase,
   Heart,
@@ -22,61 +22,50 @@ import {
 } from "lucide-react";
 import { motion } from "framer-motion";
 
+// Staffing Services Data
 const services = [
   {
-    icon: Code,
-    title: "Tech Recruitment",
+    icon: Briefcase,
+    title: "Contract & Temporary Staffing",
     description:
-      "Specialized recruitment for software developers, engineers, and IT professionals across all experience levels.",
+      "Temporary or contract staffing allows companies to hire professionals for project-based work, reducing burden on full-time staff.",
     features: [
-      "Frontend & Backend Developers",
-      "DevOps Engineers",
-      "Data Scientists",
-      "Mobile Developers",
+      "Rapid deployment of skilled professionals",
+      "Scalable workforce for tight deadlines",
+      "Reduced administrative and recruitment costs",
+      "Flexible contract durations",
     ],
-    pricing: "Starting at $3,500 per hire",
+    pricing: "Custom Quote",
   },
   {
     icon: Users,
-    title: "Executive Search",
+    title: "Mutual-Benefit Staffing",
     description:
-      "High-level executive placement services for C-suite positions and senior management roles.",
+      "We connect organizations with niche professionals and offer opportunities to job seekers, ensuring mutual value.",
     features: [
-      "C-Suite Executives",
-      "VP & Director Roles",
-      "Department Heads",
-      "Board Members",
+      "Access to extensive candidate networks",
+      "Opportunities for active and passive candidates",
+      "Dedicated recruiter and trainer support",
+      "Streamlined hiring process",
     ],
-    pricing: "15-25% of annual salary",
+    pricing: "Starting at $1,000 per placement",
   },
   {
     icon: Search,
-    title: "Contract Staffing",
+    title: "HR Management Outsourcing",
     description:
-      "Flexible staffing solutions for short-term projects and contract-based positions.",
+      "Outsource your HR recruitment and onboarding to our experts, so you can focus on core business functions.",
     features: [
-      "Project-based hiring",
-      "Temporary staffing",
-      "Contract-to-hire",
-      "Seasonal workforce",
+      "Resume screening and skill assessments",
+      "Comprehensive onboarding and training",
+      "Performance tracking and reporting",
+      "Compliance and documentation management",
     ],
-    pricing: "10-15% markup on hourly rate",
-  },
-  {
-    icon: TrendingUp,
-    title: "Career Consulting",
-    description:
-      "Professional career guidance, resume optimization, and interview preparation services.",
-    features: [
-      "Resume writing",
-      "Interview coaching",
-      "Career planning",
-      "Salary negotiation",
-    ],
-    pricing: "$200-500 per session",
+    pricing: "$500 per month",
   },
 ];
 
+// Industries Data (unchanged)
 const industries = [
   {
     icon: Code,
@@ -126,454 +115,323 @@ const industries = [
     ],
     count: "400+ placements",
   },
+  {
+    icon: Calculator,
+    name: "Contract Staffing Across Industries",
+    description:
+      "Our temporary staffing solutions serve diverse sectors with agility and expertise.",
+    roles: [
+      "High-volume hiring",
+      "Niche expertise",
+      "Short-term projects",
+      "Contract-to-hire models",
+    ],
+    count: "1,500+ engagements",
+  },
 ];
 
+// Process Steps Data
 const processSteps = [
   {
     step: 1,
-    title: "Initial Consultation",
+    title: "Needs Assessment",
     description:
-      "We start with a detailed discussion about your needs, company culture, and ideal candidate profile.",
-    duration: "1-2 hours",
+      "We discuss your project scope, timelines, and specific skill requirements.",
+    duration: "1-2 days",
   },
   {
     step: 2,
     title: "Candidate Sourcing",
     description:
-      "Our team actively searches and screens candidates from our network and external sources.",
+      "Leveraging our network and databases to identify qualified professionals.",
     duration: "3-5 days",
   },
   {
     step: 3,
-    title: "Screening & Assessment",
+    title: "Screening & Shortlisting",
     description:
-      "Comprehensive evaluation including technical skills, cultural fit, and background verification.",
-    duration: "2-3 days",
+      "Thorough resume screening, skill assessments, and preliminary interviews.",
+    duration: "2-4 days",
   },
   {
     step: 4,
     title: "Client Presentation",
     description:
-      "We present you with a curated list of top candidates with detailed profiles and assessments.",
+      "Presenting you with a curated list of top candidates and detailed profiles.",
     duration: "1 day",
   },
   {
     step: 5,
-    title: "Interview Coordination",
+    title: "Onboarding & Support",
     description:
-      "We coordinate and facilitate interviews between you and the selected candidates.",
-    duration: "1-2 weeks",
-  },
-  {
-    step: 6,
-    title: "Offer & Onboarding",
-    description:
-      "Support with offer negotiation, acceptance, and smooth onboarding process.",
-    duration: "1-2 weeks",
+      "Coordinating offers, onboarding, and providing ongoing HR support.",
+    duration: "1 week",
   },
 ];
 
 export default function ServicesPage() {
   return (
-    <div className="min-h-screen bg-white pt-16">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-50 via-white to-teal-50 py-20">
-        <div className="container">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="max-w-4xl mx-auto text-center"
-          >
-            <h1 className="text-4xl font-bold text-gray-900 mb-8 sm:text-5xl">
-              Our Services
-            </h1>
-            <p className="text-xl text-gray-600 mb-8">
-              Comprehensive recruitment and staffing solutions tailored to your
-              unique needs
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-              <div className="text-center">
-                <div className="text-3xl font-bold text-teal-600">95%</div>
-                <div className="text-sm text-gray-600">Success Rate</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-teal-600">18 Days</div>
-                <div className="text-sm text-gray-600">
-                  Average Time to Hire
+    <>
+      <Head>
+        <title>Staffing Services | A1 Selectors</title>
+        <meta
+          name="description"
+          content="Temporary, contract, and HR outsourcing services. Reduce costs, meet project demands, and strengthen your workforce."
+        />
+      </Head>
+
+      <div className="min-h-screen bg-white pt-16">
+        {/* Hero Section */}
+        <section className="bg-gradient-to-br from-blue-50 via-white to-teal-50 py-20">
+          <div className="container mx-auto px-4 text-center max-w-4xl">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              <h1 className="text-4xl font-bold text-gray-900 mb-4 sm:text-5xl">
+                Staffing Services
+              </h1>
+              <p className="text-xl text-gray-600 mb-2">
+                Temporary & contract staffing for your critical projects.
+              </p>
+              <p className="text-lg text-gray-600 mb-8">
+                Fulfill work demands, reduce costs, and strengthen your team.
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-teal-600">95%</div>
+                  <div className="text-sm text-gray-600">Success Rate</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-teal-600">
+                    18 Days
+                  </div>
+                  <div className="text-sm text-gray-600">Avg. Fill Time</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-teal-600">24/7</div>
+                  <div className="text-sm text-gray-600">Global Support</div>
                 </div>
               </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-teal-600">24/7</div>
-                <div className="text-sm text-gray-600">Support Available</div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+            </motion.div>
+          </div>
+        </section>
 
-      {/* Services Tabs */}
-      <section className="py-20">
-        <div className="container">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <Tabs defaultValue="overview" className="w-full">
-              <TabsList className="grid w-full grid-cols-4 max-w-2xl mx-auto mb-12">
-                <TabsTrigger value="overview">Overview</TabsTrigger>
-                <TabsTrigger value="industries">Industries</TabsTrigger>
-                <TabsTrigger value="process">Process</TabsTrigger>
-                <TabsTrigger value="pricing">Pricing</TabsTrigger>
-              </TabsList>
+        {/* Tabs Section */}
+        <section className="p-20">
+          <div className="container mx-auto px-4">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <Tabs defaultValue="overview">
+                <TabsList className="grid w-full grid-cols-4 max-w-2xl mx-auto mb-12">
+                  <TabsTrigger value="overview">Services</TabsTrigger>
+                  <TabsTrigger value="industries">Industries</TabsTrigger>
+                  <TabsTrigger value="process">Process</TabsTrigger>
+                  <TabsTrigger value="pricing">Pricing</TabsTrigger>
+                </TabsList>
 
-              <TabsContent value="overview" className="space-y-12">
-                <div className="max-w-6xl mx-auto">
-                  <div className="text-center mb-12">
-                    <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                      What We Offer
-                    </h2>
-                    <p className="text-lg text-gray-600">
-                      End-to-end recruitment solutions for every hiring need
-                    </p>
-                  </div>
-
+                {/* Overview Tab */}
+                <TabsContent value="overview" className="space-y-12">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    {services.map((service) => (
-                      <motion.div
-                        key={service.title}
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8 }}
-                        viewport={{ once: true }}
+                    {services.map((svc) => (
+                      <Card
+                        key={svc.title}
+                        className="hover:shadow-lg transition-shadow"
                       >
-                        <Card className="h-full hover:shadow-lg transition-shadow">
-                          <CardHeader>
-                            <div className="flex items-center space-x-4 mb-4">
-                              <div className="p-3 bg-teal-100 rounded-lg">
-                                <service.icon className="h-6 w-6 text-teal-600" />
-                              </div>
-                              <div>
-                                <CardTitle className="text-xl">
-                                  {service.title}
-                                </CardTitle>
-                                <Badge variant="secondary" className="mt-1">
-                                  {service.pricing}
-                                </Badge>
-                              </div>
+                        <CardHeader>
+                          <div className="flex items-center space-x-4 mb-4">
+                            <div className="p-3 bg-teal-100 rounded-lg">
+                              <svc.icon className="h-6 w-6 text-teal-600" />
                             </div>
-                            <CardDescription className="text-base">
-                              {service.description}
-                            </CardDescription>
-                          </CardHeader>
-                          <CardContent>
-                            <div className="space-y-3">
-                              <h4 className="font-semibold text-sm">
-                                Key Specializations:
-                              </h4>
-                              <ul className="space-y-1">
-                                {service.features.map((feature) => (
-                                  <li
-                                    key={feature}
-                                    className="text-sm text-gray-600 flex items-center gap-2"
-                                  >
-                                    <div className="w-1.5 h-1.5 bg-teal-600 rounded-full"></div>
-                                    {feature}
-                                  </li>
-                                ))}
-                              </ul>
-                              <Button
-                                variant="outline"
-                                className="w-full mt-4 bg-transparent"
-                              >
-                                Learn More
-                              </Button>
-                            </div>
-                          </CardContent>
-                        </Card>
-                      </motion.div>
-                    ))}
-                  </div>
-                </div>
-              </TabsContent>
-
-              <TabsContent value="industries" className="space-y-12">
-                <div className="max-w-6xl mx-auto">
-                  <div className="text-center mb-12">
-                    <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                      Industries We Serve
-                    </h2>
-                    <p className="text-lg text-gray-600">
-                      Deep expertise across major industry verticals
-                    </p>
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    {industries.map((industry) => (
-                      <motion.div
-                        key={industry.name}
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8 }}
-                        viewport={{ once: true }}
-                      >
-                        <Card className="h-full">
-                          <CardHeader>
-                            <div className="flex items-center justify-between mb-4">
-                              <div className="flex items-center gap-4">
-                                <div className="p-3 bg-teal-100 rounded-lg">
-                                  <industry.icon className="h-6 w-6 text-teal-600" />
-                                </div>
-                                <div>
-                                  <CardTitle className="text-xl">
-                                    {industry.name}
-                                  </CardTitle>
-                                  <Badge variant="outline" className="mt-1">
-                                    {industry.count}
-                                  </Badge>
-                                </div>
-                              </div>
-                            </div>
-                            <CardDescription className="text-base">
-                              {industry.description}
-                            </CardDescription>
-                          </CardHeader>
-                          <CardContent>
-                            <div className="space-y-3">
-                              <h4 className="font-semibold text-sm">
-                                Common Roles:
-                              </h4>
-                              <div className="flex flex-wrap gap-2">
-                                {industry.roles.map((role) => (
-                                  <Badge
-                                    key={role}
-                                    variant="secondary"
-                                    className="text-xs"
-                                  >
-                                    {role}
-                                  </Badge>
-                                ))}
-                              </div>
-                            </div>
-                          </CardContent>
-                        </Card>
-                      </motion.div>
-                    ))}
-                  </div>
-                </div>
-              </TabsContent>
-
-              <TabsContent value="process" className="space-y-12">
-                <div className="max-w-4xl mx-auto">
-                  <div className="text-center mb-12">
-                    <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                      Our Proven Process
-                    </h2>
-                    <p className="text-lg text-gray-600">
-                      A systematic approach that delivers results
-                    </p>
-                  </div>
-
-                  <div className="space-y-8">
-                    {processSteps.map((step) => (
-                      <motion.div
-                        key={step.step}
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8 }}
-                        viewport={{ once: true }}
-                      >
-                        <Card className="p-6">
-                          <div className="flex items-start gap-6">
-                            <div className="flex-shrink-0">
-                              <div className="w-12 h-12 bg-teal-600 text-white rounded-full flex items-center justify-center font-bold text-lg">
-                                {step.step}
-                              </div>
-                            </div>
-                            <div className="flex-1">
-                              <div className="flex items-center justify-between mb-3">
-                                <h3 className="text-xl font-semibold">
-                                  {step.title}
-                                </h3>
-                                <Badge variant="outline">{step.duration}</Badge>
-                              </div>
-                              <p className="text-gray-600">
-                                {step.description}
-                              </p>
+                            <div>
+                              <CardTitle className="text-xl">
+                                {svc.title}
+                              </CardTitle>
+                              <Badge variant="secondary" className="mt-1">
+                                {svc.pricing}
+                              </Badge>
                             </div>
                           </div>
-                        </Card>
-                      </motion.div>
+                          <CardDescription className="text-base">
+                            {svc.description}
+                          </CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                          <ul className="list-disc list-inside text-sm text-gray-600 mb-4">
+                            {svc.features.map((f) => (
+                              <li key={f}>{f}</li>
+                            ))}
+                          </ul>
+                          <Button variant="outline" className="w-full">
+                            Learn More
+                          </Button>
+                        </CardContent>
+                      </Card>
                     ))}
                   </div>
+                </TabsContent>
 
+                {/* Industries Tab */}
+                <TabsContent value="industries" className="space-y-12">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    {industries.map((ind) => (
+                      <Card
+                        key={ind.name}
+                        className="hover:shadow-lg transition-shadow"
+                      >
+                        <CardHeader>
+                          <div className="flex items-center space-x-4 mb-4">
+                            <div className="p-3 bg-teal-100 rounded-lg">
+                              <ind.icon className="h-6 w-6 text-teal-600" />
+                            </div>
+                            <div>
+                              <CardTitle className="text-xl">
+                                {ind.name}
+                              </CardTitle>
+                              <Badge variant="outline" className="mt-1">
+                                {ind.count}
+                              </Badge>
+                            </div>
+                          </div>
+                          <CardDescription className="text-base">
+                            {ind.description}
+                          </CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                          <ul className="list-disc list-inside text-sm text-gray-600">
+                            {ind.roles.map((r) => (
+                              <li key={r}>{r}</li>
+                            ))}
+                          </ul>
+                        </CardContent>
+                      </Card>
+                    ))}
+                  </div>
+                </TabsContent>
+
+                {/* Process Tab */}
+                <TabsContent value="process" className="space-y-12">
+                  <div className="space-y-8 max-w-4xl mx-auto">
+                    {processSteps.map((step) => (
+                      <Card key={step.step} className="p-6">
+                        <div className="flex items-start gap-6">
+                          <div>
+                            <div className="w-12 h-12 bg-teal-600 text-white rounded-full flex items-center justify-center font-bold text-lg">
+                              {step.step}
+                            </div>
+                          </div>
+                          <div className="flex-1">
+                            <div className="flex justify-between items-center mb-2">
+                              <h3 className="text-xl font-semibold">
+                                {step.title}
+                              </h3>
+                              <Badge variant="outline">{step.duration}</Badge>
+                            </div>
+                            <p className="text-gray-600">{step.description}</p>
+                          </div>
+                        </div>
+                      </Card>
+                    ))}
+                  </div>
                   <div className="text-center mt-12">
                     <Card className="bg-teal-50 border-teal-200 p-8">
                       <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                        Total Timeline: 3-6 Weeks
+                        Total Timeline: 3–6 Weeks
                       </h3>
                       <p className="text-gray-600 mb-6">
-                        From initial consultation to successful placement
+                        From project start to fully staffed teams
                       </p>
                       <Button className="bg-teal-600 hover:bg-teal-700">
-                        Start Your Search
+                        Start Your Staffing Journey
                       </Button>
                     </Card>
                   </div>
-                </div>
-              </TabsContent>
+                </TabsContent>
 
-              <TabsContent value="pricing" className="space-y-12">
-                <div className="max-w-4xl mx-auto">
-                  <div className="text-center mb-12">
-                    <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                      Transparent Pricing
-                    </h2>
-                    <p className="text-lg text-gray-600">
-                      No hidden fees, clear pricing structure
-                    </p>
+                {/* Pricing Tab */}
+                <TabsContent value="pricing" className="space-y-12">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                    <Card className="p-8">
+                      <h3 className="text-2xl font-bold mb-4">
+                        Temporary Staffing Rates
+                      </h3>
+                      <div className="space-y-4">
+                        <div className="flex justify-between p-4 bg-gray-50 rounded-lg">
+                          <span>Junior Specialists</span>
+                          <span className="font-bold text-teal-600">
+                            $20/hr
+                          </span>
+                        </div>
+                        <div className="flex justify-between p-4 bg-gray-50 rounded-lg">
+                          <span>Mid-Level Experts</span>
+                          <span className="font-bold text-teal-600">
+                            $35/hr
+                          </span>
+                        </div>
+                        <div className="flex justify-between p-4 bg-gray-50 rounded-lg">
+                          <span>Senior Consultants</span>
+                          <span className="font-bold text-teal-600">
+                            $50/hr
+                          </span>
+                        </div>
+                      </div>
+                    </Card>
+
+                    <Card className="p-8 bg-teal-50 border-teal-200">
+                      <div className="text-center mb-6">
+                        <Calculator className="mx-auto mb-4 h-12 w-12 text-teal-600" />
+                        <h3 className="text-2xl font-bold">
+                          HR Outsourcing Fees
+                        </h3>
+                      </div>
+                      <div className="space-y-4">
+                        <div className="flex justify-between p-4 bg-white rounded-lg">
+                          <span>Monthly Retainer</span>
+                          <span className="font-bold text-teal-600">
+                            $500/mo
+                          </span>
+                        </div>
+                        <div className="flex justify-between p-4 bg-white rounded-lg">
+                          <span>Per-Hire Fee</span>
+                          <span className="font-bold text-teal-600">
+                            $1,000
+                          </span>
+                        </div>
+                        <div className="flex justify-between p-4 bg-white rounded-lg">
+                          <span>Custom Projects</span>
+                          <span className="font-bold text-teal-600">
+                            Custom Quote
+                          </span>
+                        </div>
+                      </div>
+                    </Card>
                   </div>
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8 }}
-                    viewport={{ once: true }}
-                  >
-                    <div className="space-y-8">
-                      <Card className="p-8">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                          <div>
-                            <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                              Permanent Placements
-                            </h3>
-                            <div className="space-y-4">
-                              <div className="flex justify-between items-center p-4 bg-gray-50 rounded-lg">
-                                <span className="font-medium">
-                                  Junior Level (0-2 years)
-                                </span>
-                                <span className="text-teal-600 font-bold">
-                                  $2,500
-                                </span>
-                              </div>
-                              <div className="flex justify-between items-center p-4 bg-gray-50 rounded-lg">
-                                <span className="font-medium">
-                                  Mid Level (3-5 years)
-                                </span>
-                                <span className="text-teal-600 font-bold">
-                                  $4,500
-                                </span>
-                              </div>
-                              <div className="flex justify-between items-center p-4 bg-gray-50 rounded-lg">
-                                <span className="font-medium">
-                                  Senior Level (5+ years)
-                                </span>
-                                <span className="text-teal-600 font-bold">
-                                  $7,500
-                                </span>
-                              </div>
-                              <div className="flex justify-between items-center p-4 bg-gray-50 rounded-lg">
-                                <span className="font-medium">
-                                  Executive Level
-                                </span>
-                                <span className="text-teal-600 font-bold">
-                                  15-25% of salary
-                                </span>
-                              </div>
-                            </div>
-                          </div>
+                </TabsContent>
+              </Tabs>
+            </motion.div>
+          </div>
+        </section>
 
-                          <div>
-                            <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                              Contract Staffing
-                            </h3>
-                            <div className="space-y-4">
-                              <div className="flex justify-between items-center p-4 bg-gray-50 rounded-lg">
-                                <span className="font-medium">
-                                  Short-term (1-3 months)
-                                </span>
-                                <span className="text-teal-600 font-bold">
-                                  15% markup
-                                </span>
-                              </div>
-                              <div className="flex justify-between items-center p-4 bg-gray-50 rounded-lg">
-                                <span className="font-medium">
-                                  Medium-term (3-6 months)
-                                </span>
-                                <span className="text-teal-600 font-bold">
-                                  12% markup
-                                </span>
-                              </div>
-                              <div className="flex justify-between items-center p-4 bg-gray-50 rounded-lg">
-                                <span className="font-medium">
-                                  Long-term (6+ months)
-                                </span>
-                                <span className="text-teal-600 font-bold">
-                                  10% markup
-                                </span>
-                              </div>
-                              <div className="flex justify-between items-center p-4 bg-gray-50 rounded-lg">
-                                <span className="font-medium">
-                                  Contract-to-hire
-                                </span>
-                                <span className="text-teal-600 font-bold">
-                                  Conversion fee applies
-                                </span>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </Card>
-
-                      <Card className="p-8 bg-teal-50 border-teal-200">
-                        <div className="text-center">
-                          <Calculator className="h-12 w-12 text-teal-600 mx-auto mb-4" />
-                          <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                            What's Included
-                          </h3>
-                          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
-                            <div>
-                              <h4 className="font-semibold mb-2">Pre-Hire</h4>
-                              <ul className="text-sm space-y-1">
-                                <li>• Candidate sourcing</li>
-                                <li>• Skills assessment</li>
-                                <li>• Background checks</li>
-                                <li>• Interview coordination</li>
-                              </ul>
-                            </div>
-                            <div>
-                              <h4 className="font-semibold mb-2">
-                                During Hire
-                              </h4>
-                              <ul className="text-sm space-y-1">
-                                <li>• Offer negotiation</li>
-                                <li>• Reference checks</li>
-                                <li>• Onboarding support</li>
-                                <li>• Documentation</li>
-                              </ul>
-                            </div>
-                            <div>
-                              <h4 className="font-semibold mb-2">Post-Hire</h4>
-                              <ul className="text-sm space-y-1">
-                                <li>• 90-day guarantee</li>
-                                <li>• Follow-up support</li>
-                                <li>• Performance tracking</li>
-                                <li>• Replacement if needed</li>
-                              </ul>
-                            </div>
-                          </div>
-                        </div>
-                      </Card>
-                    </div>
-                  </motion.div>
-                </div>
-              </TabsContent>
-            </Tabs>
-          </motion.div>
-        </div>
-      </section>
-    </div>
+        {/* Call to Action */}
+        <section className="py-12 bg-gray-50">
+          <div className="container mx-auto px-4 text-center">
+            <h2 className="text-2xl font-semibold mb-4">
+              Ready to Transform Your Workforce?
+            </h2>
+            <p className="text-gray-600 mb-6">
+              Schedule a free consultation with our staffing experts today.
+            </p>
+            <Button size="lg" className="bg-teal-600 hover:bg-teal-700">
+              Book a Demo
+            </Button>
+          </div>
+        </section>
+      </div>
+    </>
   );
 }

@@ -9,6 +9,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import Link from "next/link";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Search, Calendar, User, ArrowRight, Clock } from "lucide-react";
@@ -173,6 +174,7 @@ export default function BlogPage() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
             className="mb-12"
+            key={1}
           >
             <h2 className="text-2xl font-bold text-slate-800 mb-8">
               Featured Article
@@ -211,10 +213,12 @@ export default function BlogPage() {
                         {blogPosts[0].author}
                       </span>
                     </div>
-                    <Button className="bg-teal-600 hover:bg-teal-700">
-                      Read More
-                      <ArrowRight className="ml-2 h-4 w-4" />
-                    </Button>
+                    <Link href={`/blog/${1}`}>
+                      <Button className="bg-teal-600 hover:bg-teal-700">
+                        Read More
+                        <ArrowRight className="ml-2 h-4 w-4" />
+                      </Button>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -286,30 +290,21 @@ export default function BlogPage() {
                         {post.readTime}
                       </div>
                     </div>
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      className="w-full mt-4 text-teal-600 hover:text-teal-700 hover:bg-teal-50"
-                    >
-                      Read More
-                      <ArrowRight className="ml-2 h-4 w-4" />
-                    </Button>
+                    <Link key={post.id} href={`/blog/${post.id}`}>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="w-full mt-4 text-teal-600 hover:text-teal-700 hover:bg-teal-50"
+                      >
+                        Read More
+                        <ArrowRight className="ml-2 h-4 w-4" />
+                      </Button>
+                    </Link>
                   </CardContent>
                 </Card>
               </motion.div>
             ))}
           </motion.div>
-
-          {/* Load More */}
-          <div className="text-center mt-12">
-            <Button
-              variant="outline"
-              size="lg"
-              className="border-teal-600 text-teal-600 hover:bg-teal-50 bg-transparent"
-            >
-              Load More Articles
-            </Button>
-          </div>
         </div>
       </section>
 

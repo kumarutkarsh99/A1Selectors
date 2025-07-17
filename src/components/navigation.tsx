@@ -176,15 +176,15 @@ export default function Navigation() {
               size="sm"
               className="border-teal-600 text-teal-600 hover:bg-teal-50"
             >
-              <Link href="/jobs">
+              <Link href="/employers/formpage">
                 <Search className="mr-2 h-4 w-4" />
-                Find Jobs
+                Hire Talent
               </Link>
             </Button>
             <Button asChild size="sm" className="bg-teal-600 hover:bg-teal-700">
               <Link href="/jobseekers/formpage">
                 <Upload className="mr-2 h-4 w-4" />
-                Upload CV
+                Get Hired
               </Link>
             </Button>
           </div>
