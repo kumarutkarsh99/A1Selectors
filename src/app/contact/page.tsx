@@ -14,6 +14,10 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Mail, Phone, MapPin, Clock } from "lucide-react";
 
+// Import useState and axios
+import { useState } from "react";
+import axios from "axios";
+
 const contactInfo = [
   {
     icon: Mail,
@@ -42,6 +46,79 @@ const contactInfo = [
 ];
 
 export default function ContactPage() {
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    company: "",
+    subject: "",
+    message: "",
+  });
+
+  const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState("");
+
+  const handleInputChange = (e: any) => {
+    const { id, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [id]: value,
+    }));
+  };
+
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+    setLoading(true);
+    setStatus("");
+
+    const payload = {
+      name: `${formData.firstName} ${formData.lastName}`,
+      email: formData.email,
+      phone: formData.phone,
+      company: formData.company,
+      subject: formData.subject,
+      message: formData.message,
+    };
+
+    try {
+      const response = await axios.post(
+        "http://16.171.117.2:3000/common/addLead",
+        payload
+      );
+
+      if (response.status === 200 || response.status === 201) {
+        setStatus("success");
+        setFormData({
+          firstName: "",
+          lastName: "",
+          email: "",
+          phone: "",
+          company: "",
+          subject: "",
+          message: "",
+        });
+        alert("Thank you! Your message has been sent successfully.");
+      } else {
+        setStatus("error");
+        console.error("Error submitting form:", response.data);
+        alert(
+          `There was an error sending your message. Please try again. Error: ${
+            response.data.message || "Unknown error"
+          }`
+        );
+      }
+    } catch (error) {
+      setStatus("error");
+      console.error("Network or API error:", error);
+      alert(
+        "A network error occurred. Please check your connection and try again."
+      );
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-slate-50 pt-16">
       {/* Header */}
@@ -129,57 +206,108 @@ export default function ContactPage() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="firstName">First Name</Label>
-                      <Input id="firstName" placeholder="John" />
+                  <form onSubmit={handleSubmit}>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                        <Label htmlFor="firstName">First Name</Label>
+                        <Input
+                          id="firstName"
+                          placeholder="John"
+                          value={formData.firstName}
+                          onChange={handleInputChange}
+                          required
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="lastName">Last Name</Label>
+                        <Input
+                          id="lastName"
+                          placeholder="Doe"
+                          value={formData.lastName}
+                          onChange={handleInputChange}
+                          required
+                        />
+                      </div>
                     </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="lastName">Last Name</Label>
-                      <Input id="lastName" placeholder="Doe" />
-                    </div>
-                  </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="email">Email</Label>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                      <div className="space-y-2">
+                        <Label htmlFor="email">Email</Label>
+                        <Input
+                          id="email"
+                          type="email"
+                          placeholder="john@example.com"
+                          value={formData.email}
+                          onChange={handleInputChange}
+                          required
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="phone">Phone</Label>
+                        <Input
+                          id="phone"
+                          placeholder="+1 (555) 000-0000"
+                          value={formData.phone}
+                          onChange={handleInputChange}
+                          required
+                        />
+                      </div>
+                    </div>
+
+                    <div className="space-y-2 mt-4">
+                      <Label htmlFor="company">Company (Optional)</Label>
                       <Input
-                        id="email"
-                        type="email"
-                        placeholder="john@example.com"
+                        id="company"
+                        placeholder="Your company name"
+                        value={formData.company}
+                        onChange={handleInputChange}
                       />
                     </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="phone">Phone</Label>
-                      <Input id="phone" placeholder="+1 (555) 000-0000" />
+
+                    <div className="space-y-2 mt-4">
+                      <Label htmlFor="subject">Subject</Label>
+                      <Input
+                        id="subject"
+                        placeholder="How can we help you?"
+                        value={formData.subject}
+                        onChange={handleInputChange}
+                        required
+                      />
                     </div>
-                  </div>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="company">Company (Optional)</Label>
-                    <Input id="company" placeholder="Your company name" />
-                  </div>
+                    <div className="space-y-2 mt-4">
+                      <Label htmlFor="message">Message</Label>
+                      <Textarea
+                        id="message"
+                        placeholder="Tell us more about your needs..."
+                        rows={6}
+                        value={formData.message}
+                        onChange={handleInputChange}
+                        required
+                      />
+                    </div>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="subject">Subject</Label>
-                    <Input id="subject" placeholder="How can we help you?" />
-                  </div>
+                    <Button
+                      className="w-full bg-teal-600 hover:bg-teal-700 cursor-pointer mt-6"
+                      size="lg"
+                      type="submit"
+                      disabled={loading}
+                    >
+                      {loading ? "Sending..." : "Send Message"}
+                    </Button>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="message">Message</Label>
-                    <Textarea
-                      id="message"
-                      placeholder="Tell us more about your needs..."
-                      rows={6}
-                    />
-                  </div>
-
-                  <Button
-                    className="w-full bg-teal-600 hover:bg-teal-700 cursor-pointer"
-                    size="lg"
-                  >
-                    Send Message
-                  </Button>
+                    {status === "success" && (
+                      <p className="mt-4 text-green-600 text-center">
+                        Message sent successfully!
+                      </p>
+                    )}
+                    {status === "error" && (
+                      <p className="mt-4 text-red-600 text-center">
+                        There was an error sending your message. Please try
+                        again.
+                      </p>
+                    )}
+                  </form>
                 </CardContent>
               </Card>
             </motion.div>
