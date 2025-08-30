@@ -54,7 +54,7 @@ export default function EmployersPage() {
 
     try {
       const response = await axios.post(
-        "http://16.171.117.2:3000/common/addemployer",
+        "http://16.171.117.2:3000/common/addprospect",
         formData
       );
 
